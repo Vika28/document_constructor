@@ -1,0 +1,46 @@
+.formWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.labelInputWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.label {
+    width: 40%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+
+}
+.input {
+    width: 60%;
+    height: 29px;
+    border: 1px solid #000000;
+    border-radius: 3px;
+}
+.btnCreate {
+    background: #BAED79;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 10px;
+    padding: 9px 40px;
+    margin-right: 20px;
+}
+
+.btnDecline {
+    background: #FD9EAF;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 10px;
+    padding: 9px 40px;
+
+}
+.btnWrapper {
+    margin-top: 20px;
+}
