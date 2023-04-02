@@ -1,17 +1,60 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import styles from './menu.module.css';
 import Button from "../../common/button/Button";
+import arrowDown from './../../../imgs/arrowDown.svg';
+import arrowUp from './../../../imgs/arrowUp.svg';
+import { Discipline } from "../../../interfaces/discipline";
+import { Sylabus } from "../../../interfaces/sylabus";
+import Sylabusy from "./Sylabusy/Sylabusy";
 
 interface MenuProps {
-    // isShow: boolean;
     onToggleIsShow: (isShow: boolean) => void;
+    discipline: Discipline;
+    formTitle: (formTitle: string) => void;
+    formType: (formType: string) => void;
+    sylabus: Sylabus;
+    disciplineId: (disciplineId: number) => void;
+    onShowCurrentSylabus: (currentSylabus: { id: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
 }
 
 const Menu: FC<MenuProps> = (props) => {
 
-    const handleClick = (isShow: boolean): void => {
-        console.log('function handleClick');
-    };
+    const [disciplines, setDisciplines] = useState<Discipline[]>([]);
+    const [currentDisciplineId, setCurrentDisciplineId] = useState(0);
+    const [isShowSylabusesList, setIsShowSylabusesList] = useState(false);
+
+    const handleDisciplineClick = (disciplineId: number) => {
+        let showSylabusState;
+        setCurrentDisciplineId(disciplineId);
+        showSylabusState = !isShowSylabusesList;
+        setIsShowSylabusesList(showSylabusState);
+    }
+
+    const handleBtnCreate = () => {
+        props.onToggleIsShow(true);
+        props.formTitle('Введіть назву нової дисципліни');
+        props.formType('createDiscipline');
+    }
+
+    useEffect(() => {
+        if (props.discipline) {
+            const newDisciplinesArr = [...disciplines, props.discipline];
+            setDisciplines(newDisciplinesArr);
+        }
+    }, [props.discipline]);
+
+    useEffect(() => {
+        if (props.sylabus) {
+            let disciplinesArr = [...disciplines];
+            disciplinesArr = disciplinesArr.map((discipline)=>{
+                if(discipline.id === currentDisciplineId) {
+                    discipline.sylabusy.push(props.sylabus);
+                }
+                return discipline
+            })
+            setDisciplines(disciplinesArr);
+        }
+    }, [props.sylabus]);
 
     return (
         <div className={styles.menuWrapper}>
@@ -19,10 +62,51 @@ const Menu: FC<MenuProps> = (props) => {
             <p className={styles.disciplinesTitle}>Перелік дисциплін:</p>
             <Button
                 textContent='Створити нову дисципліну'
-                handleClick={()=>props.onToggleIsShow(true)}
+                handleClick={ ()=> handleBtnCreate() }
             />
-            <ul>
+            <ul className={styles.disciplinesMenuWrapper}>
+                {
+                    disciplines.map((discipline) => (
+                        <li className={styles.disciplineItemWrapper}>
+                            <div
+                                className={styles.disciplineItem}
+                                onClick={() => (
+                                    handleDisciplineClick(discipline.id))}
+                            >
+                                <span className={styles.disciplineName}>{discipline.disciplineName}</span>
+                                {
+                                    (isShowSylabusesList && currentDisciplineId === discipline.id) ? (
+                                        <span className={styles.arrowUp}>
+                                            <img src={arrowUp} alt=""/>
+                                        </span>
+                                    ) : (
+                                        <span className={styles.arrowDown}>
+                                            <img src={arrowDown} alt=""/>
+                                        </span>
+                                    )
+                                }
+                            </div>
 
+                                {
+                                    (isShowSylabusesList && currentDisciplineId === discipline.id) ? (
+                                        <Sylabusy
+                                            onToggleIsShow={props.onToggleIsShow}
+                                            currentDiscipline={discipline}
+                                            formTitle={props.formTitle}
+                                            formType={props.formType}
+                                            sylabus={props.sylabus}
+                                            disciplineId={props.disciplineId}
+                                            disciplineIdForComp={discipline.id}
+                                            setCurrentDisciplineId={setCurrentDisciplineId}
+                                            onShowCurrentSylabus={props.onShowCurrentSylabus}
+                                        />
+                                    ) : (
+                                        <></>
+                                    )
+                                }
+                        </li>
+                    ))
+                }
             </ul>
         </div>
     );

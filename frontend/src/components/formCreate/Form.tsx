@@ -1,39 +1,98 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import styles from './Form.module.css';
-import axios from "axios";
+import { Discipline } from "../../interfaces/discipline";
+import { Sylabus } from "../../interfaces/sylabus";
+import { RSOtype1 } from "../../RSOtypes";
+import { RSOtype2 } from "../../RSOtypes";
+import {createDiscipline, createSylabus} from "../../services/APIservice";
 
 interface FormProps {
-    // isShow: boolean;
     onToggleIsShow: (isShow: boolean) => void;
+    onCreateDiscipline: (discipline: Discipline) => void;
+    formTitle: string;
+    formType: string;
+    onCreateSylabus: (sylabus: Sylabus) => void;
+    disciplineId: number;
 }
 
 const Form: FC<FormProps>= (props) => {
-    // console.log('props in Form', props.isShow);
-    // handleClick(props.isShow)
+    const [inputValue, setInputValue] = useState('');
+    const [RSOtype, setRSOtype] = useState('');
+    const isDisabledBtnCreate = inputValue === '' || RSOtype === '' && props.formType === 'createSylabus';
+
 
     const handleCreate = () => {
-        console.log('axios works')
-        axios.post('http://localhost:8080/createDiscipline', {
-            id: 1,
-            disciplineName: "disc 1"
-        })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        if(props.formType === 'createDiscipline') {
+            createDiscipline(inputValue)
+                .then((discipline) => {
+                    props.onCreateDiscipline(
+                        {
+                            id: discipline.id,
+                            disciplineName: discipline.name,
+                            sylabusy: []
+                        }
+                        );
+                })
+                .catch((error) => {
+                    console.log('Error creating discipline:', error);
+                });
+        } else if (props.formType === 'createSylabus') {
+            createSylabus(inputValue, RSOtype)
+                .then((sylabus) => {
+                    props.onCreateSylabus(
+                        {
+                            id: sylabus.id,
+                            sylabusName: sylabus.name,
+                            type: sylabus.type,
+                        }
+                    );
+                })
+                .catch((error) => {
+                    console.log('Error creating sylabus:', error);
+                });
 
+            // todo
+        }
         props.onToggleIsShow(false);
     }
+
+
     return (
-        <div className={styles.formWrapper}>
+        <div
+            className={styles.formWrapper}
+        >
             <div className={styles.labelInputWrapper}>
-                <p className={styles.label}>Введіть назву нової дисципліни</p>
-                <input type="text" className={styles.input}/>
+                <p className={styles.label}>{props.formTitle}</p>
+                <input
+                    type="text"
+                    className={styles.input}
+                    onChange={(e) => {
+                        setInputValue(e.target.value);
+                    }}
+                />
             </div>
+            {
+                props.formTitle === 'Введіть назву нового силабусу' ? (
+                    <div className={styles.typeRSOWrapper}>
+                        <div
+                            className={`${styles.typeRSO} ${RSOtype === RSOtype1 ? styles.activeTypeRSO : ''}`}
+                            onClick={() => {
+                                setRSOtype(RSOtype1);
+                            }}
+                        >{RSOtype1}</div>
+                        <div
+                            className={`${styles.typeRSO} ${RSOtype === RSOtype2 ? styles.activeTypeRSO : ''}`}
+                            onClick={() => setRSOtype(RSOtype2)}
+                        >{RSOtype2}</div>
+                    </div>
+                ) : (
+                    <></>
+                )
+            }
+
             <div className={styles.btnWrapper}>
                 <button
+                    disabled={isDisabledBtnCreate}
                     className={styles.btnCreate}
                     onClick={handleCreate}
                 >Створити</button>
