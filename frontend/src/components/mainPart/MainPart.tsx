@@ -33,7 +33,7 @@ const MainPart: FC<MainPartProps> = (props) => {
                 <></>
             )
             }
-            {props.currentSylabus.isShowSylabys && !props.isShow ? (
+            {props.currentSylabus.isShowSylabys ? (
                 <SylabusPage
                     currentSylabus={props.currentSylabus}
                     disciplineId={props.disciplineId}
