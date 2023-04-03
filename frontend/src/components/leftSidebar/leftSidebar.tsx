@@ -1,10 +1,17 @@
 import React, {FC, useState} from 'react';
 import styles from './leftsidebar.module.css';
 import Menu from "./Menu/Menu";
+import { Discipline } from "../../interfaces/discipline";
+import { Sylabus } from "../../interfaces/sylabus";
 
 interface LeftSidebarProps {
-    // isShow: boolean;
     onToggleIsShow: (isShow: boolean) => void;
+    discipline: Discipline;
+    formTitle: (formTitle: string) => void;
+    formType: (formType: string) => void;
+    sylabus: Sylabus;
+    disciplineId: (disciplineId: number) => void;
+    onShowCurrentSylabus: (currentSylabus: { id: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
 }
 
 const LeftSidebar: FC<LeftSidebarProps> = (props) => {
@@ -18,6 +25,12 @@ const LeftSidebar: FC<LeftSidebarProps> = (props) => {
             <p className={styles.leftSidebarTitle}>Перелік дисциплін {teacher}</p>
             <Menu
                 onToggleIsShow={props.onToggleIsShow}
+                discipline={props.discipline}
+                formTitle={props.formTitle}
+                formType={props.formType}
+                sylabus={props.sylabus}
+                disciplineId={props.disciplineId}
+                onShowCurrentSylabus={props.onShowCurrentSylabus}
              />
         </div>
     );

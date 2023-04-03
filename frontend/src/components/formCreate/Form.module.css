@@ -44,3 +44,24 @@
 .btnWrapper {
     margin-top: 20px;
 }
+.typeRSOWrapper {
+    width: 193px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+}
+.typeRSO {
+    background: #D9D9D9;
+    padding: 14px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+
+}
+.typeRSO:hover {
+    background-color: gray;
+    transition: 0.3s;
+}
+.activeTypeRSO {
+    background-color: gray;
+}

@@ -511,3 +511,6 @@ a, input, button, textarea {
 * {
     box-sizing: border-box;
 }
+ul, ol {
+    list-style-type: none;
+}
