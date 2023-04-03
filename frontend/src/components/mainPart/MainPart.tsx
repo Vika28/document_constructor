@@ -13,7 +13,7 @@ interface MainPartProps {
     formType: string;
     onCreateSylabus: (sylabus: Sylabus) => void;
     disciplineId: number;
-    currentSylabus: { id: number; sylabusName: string; type: string; isShowSylabys: boolean }
+    currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }
 }
 
 const MainPart: FC<MainPartProps> = (props) => {

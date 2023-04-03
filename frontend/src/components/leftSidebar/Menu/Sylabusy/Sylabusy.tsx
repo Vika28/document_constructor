@@ -14,12 +14,12 @@ interface SylabusyProps {
     disciplineId: (disciplineId: number) => void;
     disciplineIdForComp: number;
     setCurrentDisciplineId: (disciplineId: number) => void;
-    onShowCurrentSylabus: (currentSylabus: { id: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
+    onShowCurrentSylabus: (currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
 }
 
 const Sylabusy: FC<SylabusyProps> = (props) => {
 
-    const [clickedSylabusId, setClickedSylabusId] = useState(0);
+    const [clickedSylabusId, setClickedSylabusId] = useState<null | number>(null);
 
     const handleSylabusClick = (sylabus: Sylabus) => {
         let tempId = 0;
@@ -27,6 +27,7 @@ const Sylabusy: FC<SylabusyProps> = (props) => {
         setClickedSylabusId(tempId);
         props.onShowCurrentSylabus(
             { id: sylabus.id,
+                            disciplineId: sylabus.disciplineId,
                             sylabusName: sylabus.sylabusName,
                             type: sylabus.type,
                             isShowSylabys: true
@@ -39,7 +40,16 @@ const Sylabusy: FC<SylabusyProps> = (props) => {
         props.formTitle('Введіть назву нового силабусу');
         props.formType('createSylabus');
         props.disciplineId(props.disciplineIdForComp);
-        props.setCurrentDisciplineId(props.disciplineIdForComp)
+        props.setCurrentDisciplineId(props.disciplineIdForComp);
+        setClickedSylabusId(null);
+        props.onShowCurrentSylabus(
+            { id:0,
+                disciplineId: 0,
+                sylabusName: '',
+                type: '',
+                isShowSylabys: false
+            }
+        );
     }
 
     return (
