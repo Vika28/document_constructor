@@ -3,7 +3,12 @@ package com.document_constructor.backend.model;
 public class Discipline {
 
     private Long id;
-    private String disciplineName;
+    private String name;
+
+    public Discipline(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
@@ -13,15 +18,11 @@ public class Discipline {
         this.id = id;
     }
 
-    public String getDisciplineName() {
-        return disciplineName;
+    public String getName() {
+        return name;
     }
 
-    public void setDisciplineName(String disciplineName) {
-        this.disciplineName = disciplineName;
+    public void setName(String name) {
+        this.name = name;
     }
-
-//    public Discipline(String disciplineName) {
-//        this.disciplineName = disciplineName;
-//    }
 }

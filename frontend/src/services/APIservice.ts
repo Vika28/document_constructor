@@ -4,7 +4,7 @@ import {url} from "../URL";
 export  const  createDiscipline: (disciplineName: string) => Promise<any> = async (disciplineName: string) => {
     const { data } = await axios.post(`${url}/createDiscipline`, {
         id: 1,
-        disciplineName: disciplineName,
+        name: disciplineName,
         sylabusy: [],
     });
      return data;

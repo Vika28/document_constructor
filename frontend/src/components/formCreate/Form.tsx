@@ -43,11 +43,10 @@ const Form: FC<FormProps>= (props) => {
                         {
                             id: sylabus.id,
                             disciplineId: sylabus.disciplineId,
-                            sylabusName: sylabus.name,
+                            sylabusName: sylabus.sylabusName,
                             type: sylabus.type,
                         }
                     );
-                    console.log('discipline id for creating', sylabus.disciplineId);
                 })
                 .catch((error) => {
                     console.log('Error creating sylabus:', error);

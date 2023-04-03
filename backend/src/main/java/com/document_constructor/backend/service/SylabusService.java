@@ -1,8 +1,6 @@
 package com.document_constructor.backend.service;
 
-import com.document_constructor.backend.model.Discipline;
 import com.document_constructor.backend.model.Sylabus;
-import com.document_constructor.backend.model.SylabusResponse;
 
 import java.util.HashMap;
 import java.util.Map;

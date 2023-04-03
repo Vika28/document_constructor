@@ -6,6 +6,16 @@ public class Sylabus {
     private String sylabusName;
     private String type;
 
+    public Sylabus() {
+    }
+
+    public Sylabus(Long id, Long disciplineId, String sylabusName, String type) {
+        this.id = id;
+        this.disciplineId = disciplineId;
+        this.sylabusName = sylabusName;
+        this.type = type;
+    }
+
     public Long getId() {
         return id;
     }
@@ -22,22 +32,19 @@ public class Sylabus {
         this.disciplineId = disciplineId;
     }
 
+    public String getSylabusName() {
+        return sylabusName;
+    }
+
+    public void setSylabusName(String sylabusName) {
+        this.sylabusName = sylabusName;
+    }
+
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getSylabusName() {
-        return sylabusName;
-    }
-
-//    public String getSylabusType() {
-//        return type;
-//    }
-    public void setSylabusName(String sylabusName) {
-        this.sylabusName = sylabusName;
     }
 }
