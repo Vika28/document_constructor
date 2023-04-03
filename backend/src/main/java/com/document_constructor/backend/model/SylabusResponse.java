@@ -2,11 +2,13 @@ package com.document_constructor.backend.model;
 
 public class SylabusResponse {
     private Long id;
+    private Long disciplineId;
     private String sylabusName;
     private String type;
 
-    public SylabusResponse(Long id, String sylabusName, String type) {
+    public SylabusResponse(Long id, Long disciplineId, String sylabusName, String type) {
         this.id = id;
+        this.disciplineId = disciplineId;
         this.sylabusName = sylabusName;
         this.type = type;
     }
@@ -17,6 +19,14 @@ public class SylabusResponse {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getDisciplineId() {
+        return disciplineId;
+    }
+
+    public void setDisciplineId(Long disciplineId) {
+        this.disciplineId = disciplineId;
     }
 
     public String getName() {
@@ -34,5 +44,7 @@ public class SylabusResponse {
     public void setName(String sylabusName) {
         this.sylabusName = sylabusName;
     }
+
+
 
 }

@@ -10,8 +10,9 @@ export  const  createDiscipline: (disciplineName: string) => Promise<any> = asyn
      return data;
 }
 
-export  const  createSylabus: (sylabusName: string, type: string) => Promise<any> = async (sylabusName: string, type: string) => {
+export  const  createSylabus: (disciplineId: number, sylabusName: string, type: string) => Promise<any> = async (disciplineId: number, sylabusName: string, type: string) => {
     const { data } = await axios.post(`${url}/createSylabus`, {
+        disciplineId: disciplineId,
         sylabusName: sylabusName,
         type: type,
     });

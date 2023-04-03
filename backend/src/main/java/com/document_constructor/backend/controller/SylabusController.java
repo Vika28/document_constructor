@@ -18,7 +18,7 @@ public class SylabusController {
         Long id = SylabusService.saveSylabusAndGetId(newSylabus);
 
         // Create new instance of DisciplineResponse with the ID and name
-        SylabusResponse response = new SylabusResponse(id, newSylabus.getSylabusName(), newSylabus.getSylabusType());
+        SylabusResponse response = new SylabusResponse(id, newSylabus.getDisciplineId(), newSylabus.getSylabusName(), newSylabus.getType());
 
         return response;
     }

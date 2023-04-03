@@ -37,15 +37,17 @@ const Form: FC<FormProps>= (props) => {
                     console.log('Error creating discipline:', error);
                 });
         } else if (props.formType === 'createSylabus') {
-            createSylabus(inputValue, RSOtype)
+            createSylabus(props.disciplineId, inputValue, RSOtype)
                 .then((sylabus) => {
                     props.onCreateSylabus(
                         {
                             id: sylabus.id,
+                            disciplineId: sylabus.disciplineId,
                             sylabusName: sylabus.name,
                             type: sylabus.type,
                         }
                     );
+                    console.log('discipline id for creating', sylabus.disciplineId);
                 })
                 .catch((error) => {
                     console.log('Error creating sylabus:', error);
