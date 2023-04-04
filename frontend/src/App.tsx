@@ -14,9 +14,9 @@ interface AppProps {
 const App: FC<AppProps> = (props) => {
     // const [isShow, setIsShow] = useState(false);
     // @ts-ignore
-    const [discipline, setDiscipline] = useState<Discipline>(null);
-    const [formTitle, setFormTitle] = useState('');
-    const [formType, setFormType] = useState('');
+    // const [discipline, setDiscipline] = useState<Discipline>(null);
+    // const [formTitle, setFormTitle] = useState('');
+    // const [formType, setFormType] = useState('');
     // @ts-ignore
     const [sylabus, setSylabus] = useState<Sylabus>(null);
     const [disciplineId, setDisciplineId] = useState(0);
@@ -30,13 +30,13 @@ const App: FC<AppProps> = (props) => {
     //     setDiscipline(discipline);
     // }
 
-    const getFormTitle = (formTitle: string) => {
-        setFormTitle(formTitle);
-    }
-
-    const getFormType = (formType: string) => {
-        setFormType(formType);
-    }
+    // const getFormTitle = (formTitle: string) => {
+    //     setFormTitle(formTitle);
+    // }
+    //
+    // const getFormType = (formType: string) => {
+    //     setFormType(formType);
+    // }
 
     const createSylabus = (sylabus: Sylabus) => {
         // @ts-ignore
@@ -61,8 +61,8 @@ const App: FC<AppProps> = (props) => {
               <LeftSidebar
                   // onToggleIsShow={toggleIsShow}
                   // discipline={discipline}
-                  formTitle={getFormTitle}
-                  formType={getFormType}
+                  // formTitle={getFormTitle}
+                  // formType={getFormType}
                   sylabus={sylabus}
                   disciplineId={getDisciplineId}
                   onShowCurrentSylabus={getCurrentSylabus}
@@ -71,8 +71,8 @@ const App: FC<AppProps> = (props) => {
                   // isShow={isShow}
                   // onToggleIsShow={toggleIsShow}
                   // onCreateDiscipline={createDiscipline}
-                  formTitle={formTitle}
-                  formType={formType}
+                  // formTitle={formTitle}
+                  // formType={formType}
                   onCreateSylabus={createSylabus}
                   disciplineId={disciplineId}
                   currentSylabus={currentSylabus}

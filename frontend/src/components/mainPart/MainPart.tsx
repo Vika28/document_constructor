@@ -11,8 +11,8 @@ interface MainPartProps {
     // isShow: boolean;
     // onToggleIsShow: (isShow: boolean) => void;
     // onCreateDiscipline: (disciplineName: Discipline) => void;
-    formTitle: string;
-    formType: string;
+    // formTitle: string;
+    // formType: string;
     onCreateSylabus: (sylabus: Sylabus) => void;
     disciplineId: number;
     currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }
@@ -27,8 +27,8 @@ const MainPart: FC<MainPartProps> = (props) => {
                 <Form
                     // onToggleIsShow={props.onToggleIsShow}
                     // onCreateDiscipline={props.onCreateDiscipline}
-                    formTitle={props.formTitle}
-                    formType={props.formType}
+                    // formTitle={props.formTitle}
+                    // formType={props.formType}
                     onCreateSylabus={props.onCreateSylabus}
                     disciplineId={props.disciplineId}
                 />

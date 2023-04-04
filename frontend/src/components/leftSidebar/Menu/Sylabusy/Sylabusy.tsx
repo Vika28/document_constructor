@@ -10,8 +10,8 @@ import {observer} from "mobx-react";
 interface SylabusyProps {
     // onToggleIsShow: (isShow: boolean) => void;
     currentDiscipline: Discipline;
-    formTitle: (formTitle: string) => void;
-    formType: (formType: string) => void;
+    // formTitle: (formTitle: string) => void;
+    // formType: (formType: string) => void;
     sylabus: Sylabus;
     disciplineId: (disciplineId: number) => void;
     disciplineIdForComp: number;
@@ -40,8 +40,10 @@ const Sylabusy: FC<SylabusyProps> = (props) => {
     const handleBtnCreateClick = () => {
         // props.onToggleIsShow(true);
         Store.setIsShown(true);
-        props.formTitle('Введіть назву нового силабусу');
-        props.formType('createSylabus');
+        // props.formTitle('Введіть назву нового силабусу');
+        // props.formType('createSylabus');
+        Store.setFormTitle('Введіть назву нового силабусу');
+        Store.setFormType('createSylabus');
         props.disciplineId(props.disciplineIdForComp);
         props.setCurrentDisciplineId(props.disciplineIdForComp);
         setClickedSylabusId(null);

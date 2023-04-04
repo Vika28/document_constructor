@@ -8,8 +8,8 @@ import {observer} from "mobx-react";
 interface LeftSidebarProps {
     // onToggleIsShow: (isShow: boolean) => void;
     // discipline: Discipline;
-    formTitle: (formTitle: string) => void;
-    formType: (formType: string) => void;
+    // formTitle: (formTitle: string) => void;
+    // formType: (formType: string) => void;
     sylabus: Sylabus;
     disciplineId: (disciplineId: number) => void;
     onShowCurrentSylabus: (currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
@@ -27,8 +27,8 @@ const LeftSidebar: FC<LeftSidebarProps> = (props) => {
             <Menu
                 // onToggleIsShow={props.onToggleIsShow}
                 // discipline={props.discipline}
-                formTitle={props.formTitle}
-                formType={props.formType}
+                // formTitle={props.formTitle}
+                // formType={props.formType}
                 sylabus={props.sylabus}
                 disciplineId={props.disciplineId}
                 onShowCurrentSylabus={props.onShowCurrentSylabus}

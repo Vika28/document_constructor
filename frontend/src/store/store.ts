@@ -4,8 +4,8 @@ import { Discipline } from "../interfaces/discipline";
 class Store {
     isShown: boolean = false;
     discipline: Discipline | null = null;
-    // formTitle: string = '';
-    // formType: string = '';
+    formTitle: string = '';
+    formType: string = '';
     // sylabus: Sylabus | null = null;
     // disciplineId: number = 0;
     // currentSylabus = { id: 0, disciplineId: 0, sylabusName: '', type: '', isShowSylabys: false };
@@ -21,14 +21,14 @@ class Store {
     setDiscipline(discipline: Discipline) {
         this.discipline = discipline;
     }
-    //
-    // setFormTitle(formTitle: string) {
-    //     this.formTitle = formTitle;
-    // }
-    //
-    // setFormType(formType: string) {
-    //     this.formType = formType;
-    // }
+
+    setFormTitle(formTitle: string) {
+        this.formTitle = formTitle;
+    }
+
+    setFormType(formType: string) {
+        this.formType = formType;
+    }
     //
     // setSylabus(sylabus: Sylabus) {
     //     this.sylabus = sylabus;

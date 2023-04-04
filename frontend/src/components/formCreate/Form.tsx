@@ -11,8 +11,8 @@ import { observer } from "mobx-react";
 interface FormProps {
     // onToggleIsShow: (isShow: boolean) => void;
     // onCreateDiscipline: (discipline: Discipline) => void;
-    formTitle: string;
-    formType: string;
+    // formTitle: string;
+    // formType: string;
     onCreateSylabus: (sylabus: Sylabus) => void;
     disciplineId: number;
 }
@@ -20,11 +20,11 @@ interface FormProps {
 const Form: FC<FormProps>= (props) => {
     const [inputValue, setInputValue] = useState('');
     const [RSOtype, setRSOtype] = useState('');
-    const isDisabledBtnCreate = inputValue === '' || RSOtype === '' && props.formType === 'createSylabus';
+    const isDisabledBtnCreate = inputValue === '' || RSOtype === '' && Store.formType === 'createSylabus';
 
 
     const handleCreate = () => {
-        if(props.formType === 'createDiscipline') {
+        if(Store.formType === 'createDiscipline') {
             createDiscipline(inputValue)
                 .then((discipline) => {
                     // props.onCreateDiscipline(
@@ -39,7 +39,7 @@ const Form: FC<FormProps>= (props) => {
                 .catch((error) => {
                     console.log('Error creating discipline:', error);
                 });
-        } else if (props.formType === 'createSylabus') {
+        } else if (Store.formType === 'createSylabus') {
             createSylabus(props.disciplineId, inputValue, RSOtype)
                 .then((sylabus) => {
                     props.onCreateSylabus(
@@ -67,7 +67,7 @@ const Form: FC<FormProps>= (props) => {
             className={styles.formWrapper}
         >
             <div className={styles.labelInputWrapper}>
-                <p className={styles.label}>{props.formTitle}</p>
+                <p className={styles.label}>{Store.formTitle}</p>
                 <input
                     type="text"
                     className={styles.input}
@@ -77,7 +77,7 @@ const Form: FC<FormProps>= (props) => {
                 />
             </div>
             {
-                props.formTitle === 'Введіть назву нового силабусу' ? (
+                Store.formType === 'createSylabus' ? (
                     <div className={styles.typeRSOWrapper}>
                         <div
                             className={`${styles.typeRSO} ${RSOtype === RSOtype1 ? styles.activeTypeRSO : ''}`}

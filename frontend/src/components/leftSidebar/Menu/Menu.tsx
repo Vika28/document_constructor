@@ -12,8 +12,8 @@ import {observer} from "mobx-react";
 interface MenuProps {
     // onToggleIsShow: (isShow: boolean) => void;
     // discipline: Discipline;
-    formTitle: (formTitle: string) => void;
-    formType: (formType: string) => void;
+    // formTitle: (formTitle: string) => void;
+    // formType: (formType: string) => void;
     sylabus: Sylabus;
     disciplineId: (disciplineId: number) => void;
     onShowCurrentSylabus: (currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
@@ -36,8 +36,10 @@ const Menu: FC<MenuProps> = (props) => {
         // props.onToggleIsShow(true);
         Store.setIsShown(true);
 
-        props.formTitle('Введіть назву нової дисципліни');
-        props.formType('createDiscipline');
+        // props.formTitle('Введіть назву нової дисципліни');
+        // props.formType('createDiscipline');
+        Store.setFormTitle('Введіть назву нової дисципліни');
+        Store.setFormType('createDiscipline');
     }
 
     useEffect(() => {
@@ -98,8 +100,8 @@ const Menu: FC<MenuProps> = (props) => {
                                         <Sylabusy
                                             // onToggleIsShow={props.onToggleIsShow}
                                             currentDiscipline={discipline}
-                                            formTitle={props.formTitle}
-                                            formType={props.formType}
+                                            // formTitle={props.formTitle}
+                                            // formType={props.formType}
                                             sylabus={props.sylabus}
                                             disciplineId={props.disciplineId}
                                             disciplineIdForComp={discipline.id}
