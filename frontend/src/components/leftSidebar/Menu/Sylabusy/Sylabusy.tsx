@@ -16,7 +16,7 @@ interface SylabusyProps {
     disciplineId: (disciplineId: number) => void;
     disciplineIdForComp: number;
     setCurrentDisciplineId: (disciplineId: number) => void;
-    onShowCurrentSylabus: (currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
+    // onShowCurrentSylabus: (currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
 }
 
 const Sylabusy: FC<SylabusyProps> = (props) => {
@@ -27,14 +27,21 @@ const Sylabusy: FC<SylabusyProps> = (props) => {
         let tempId = 0;
         tempId = sylabus.id;
         setClickedSylabusId(tempId);
-        props.onShowCurrentSylabus(
-            { id: sylabus.id,
-                            disciplineId: sylabus.disciplineId,
-                            sylabusName: sylabus.sylabusName,
-                            type: sylabus.type,
-                            isShowSylabys: true
-            }
-        );
+        // props.onShowCurrentSylabus(
+        //     { id: sylabus.id,
+        //                     disciplineId: sylabus.disciplineId,
+        //                     sylabusName: sylabus.sylabusName,
+        //                     type: sylabus.type,
+        //                     isShowSylabys: true
+        //     }
+        // );
+        Store.setCurrentSylabus({
+                                id: sylabus.id,
+                                disciplineId: sylabus.disciplineId,
+                                sylabusName: sylabus.sylabusName,
+                                type: sylabus.type,
+        });
+        Store.setIsShownSylabus(true);
     }
 
     const handleBtnCreateClick = () => {
@@ -47,14 +54,22 @@ const Sylabusy: FC<SylabusyProps> = (props) => {
         props.disciplineId(props.disciplineIdForComp);
         props.setCurrentDisciplineId(props.disciplineIdForComp);
         setClickedSylabusId(null);
-        props.onShowCurrentSylabus(
-            { id:0,
-                disciplineId: 0,
-                sylabusName: '',
-                type: '',
-                isShowSylabys: false
-            }
-        );
+        // props.onShowCurrentSylabus(
+        //     { id:0,
+        //         disciplineId: 0,
+        //         sylabusName: '',
+        //         type: '',
+        //         isShowSylabys: false
+        //     }
+        // );
+
+        Store.setCurrentSylabus({
+                                id: 0,
+                                disciplineId: 0,
+                                sylabusName: '',
+                                type: '',
+        });
+        Store.setIsShownSylabus(false);
     }
 
     return (

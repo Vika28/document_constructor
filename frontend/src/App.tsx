@@ -20,7 +20,7 @@ const App: FC<AppProps> = (props) => {
     // @ts-ignore
     // const [sylabus, setSylabus] = useState<Sylabus>(null);
     const [disciplineId, setDisciplineId] = useState(0);
-    const [currentSylabus, setCurrentSylabus] = useState({ id: 0, disciplineId: 0, sylabusName: '', type: '', isShowSylabys: false } );
+    // const [currentSylabus, setCurrentSylabus] = useState({ id: 0, disciplineId: 0, sylabusName: '', type: '', isShowSylabys: false } );
     // const toggleIsShow = (isShow: boolean) => {
     //     console.log('callback', isShow);
     //     setIsShow(isShow);
@@ -47,10 +47,10 @@ const App: FC<AppProps> = (props) => {
         setDisciplineId(disciplineId);
     }
 
-    const getCurrentSylabus = (currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }) => {
-        // @ts-ignore
-        setCurrentSylabus(currentSylabus);
-    }
+    // const getCurrentSylabus = (currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }) => {
+    //     // @ts-ignore
+    //     setCurrentSylabus(currentSylabus);
+    // }
 
 
     return (
@@ -65,7 +65,7 @@ const App: FC<AppProps> = (props) => {
                   // formType={getFormType}
                   // sylabus={sylabus}
                   disciplineId={getDisciplineId}
-                  onShowCurrentSylabus={getCurrentSylabus}
+                  // onShowCurrentSylabus={getCurrentSylabus}
               />
               <MainPart
                   // isShow={isShow}
@@ -75,7 +75,7 @@ const App: FC<AppProps> = (props) => {
                   // formType={formType}
                   // onCreateSylabus={createSylabus}
                   disciplineId={disciplineId}
-                  currentSylabus={currentSylabus}
+                  // currentSylabus={currentSylabus}
               />
               <RightSidebar />
           </div>

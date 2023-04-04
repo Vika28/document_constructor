@@ -10,6 +10,8 @@ class Store {
     sylabus: Sylabus | null = null;
     // disciplineId: number = 0;
     // currentSylabus = { id: 0, disciplineId: 0, sylabusName: '', type: '', isShowSylabys: false };
+    currentSylabus: Sylabus = { id: 0, disciplineId: 0, sylabusName: '', type: '' };
+    isShownSylabus: boolean = false;
     //
     constructor() {
         makeAutoObservable(this);
@@ -33,6 +35,14 @@ class Store {
 
     setSylabus(sylabus: Sylabus) {
         this.sylabus = sylabus;
+    }
+
+    setCurrentSylabus(currentSylabus: Sylabus) {
+        this.currentSylabus = currentSylabus;
+    }
+
+    setIsShownSylabus(isShownSylabus: boolean) {
+        this.isShownSylabus = isShownSylabus;
     }
     //
     // setDisciplineId(disciplineId: number) {

@@ -12,7 +12,7 @@ interface LeftSidebarProps {
     // formType: (formType: string) => void;
     // sylabus: Sylabus;
     disciplineId: (disciplineId: number) => void;
-    onShowCurrentSylabus: (currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
+    // onShowCurrentSylabus: (currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
 }
 
 const LeftSidebar: FC<LeftSidebarProps> = (props) => {
@@ -31,7 +31,7 @@ const LeftSidebar: FC<LeftSidebarProps> = (props) => {
                 // formType={props.formType}
                 // sylabus={props.sylabus}
                 disciplineId={props.disciplineId}
-                onShowCurrentSylabus={props.onShowCurrentSylabus}
+                // onShowCurrentSylabus={props.onShowCurrentSylabus}
              />
         </div>
     );

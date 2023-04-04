@@ -16,7 +16,7 @@ interface MenuProps {
     // formType: (formType: string) => void;
     // sylabus: Sylabus;
     disciplineId: (disciplineId: number) => void;
-    onShowCurrentSylabus: (currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
+    // onShowCurrentSylabus: (currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
 }
 
 const Menu: FC<MenuProps> = (props) => {
@@ -109,7 +109,7 @@ const Menu: FC<MenuProps> = (props) => {
                                             disciplineId={props.disciplineId}
                                             disciplineIdForComp={discipline.id}
                                             setCurrentDisciplineId={setCurrentDisciplineId}
-                                            onShowCurrentSylabus={props.onShowCurrentSylabus}
+                                            // onShowCurrentSylabus={props.onShowCurrentSylabus}
                                         />
                                     ) : (
                                         <></>

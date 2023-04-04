@@ -15,7 +15,7 @@ interface MainPartProps {
     // formType: string;
     // onCreateSylabus: (sylabus: Sylabus) => void;
     disciplineId: number;
-    currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }
+    // currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }
 }
 
 const MainPart: FC<MainPartProps> = (props) => {
@@ -36,9 +36,9 @@ const MainPart: FC<MainPartProps> = (props) => {
                 <></>
             )
             }
-            {props.currentSylabus.isShowSylabys && !Store.isShown ? (
+            {Store.isShownSylabus && !Store.isShown ? (
                 <SylabusPage
-                    currentSylabus={props.currentSylabus}
+                    // currentSylabus={props.currentSylabus}
                     disciplineId={props.disciplineId}
                 />
             ) : (
