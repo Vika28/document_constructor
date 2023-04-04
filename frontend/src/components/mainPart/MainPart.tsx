@@ -14,7 +14,7 @@ interface MainPartProps {
     // formTitle: string;
     // formType: string;
     // onCreateSylabus: (sylabus: Sylabus) => void;
-    disciplineId: number;
+    // disciplineId: number;
     // currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }
 }
 
@@ -30,7 +30,7 @@ const MainPart: FC<MainPartProps> = (props) => {
                     // formTitle={props.formTitle}
                     // formType={props.formType}
                     // onCreateSylabus={props.onCreateSylabus}
-                    disciplineId={props.disciplineId}
+                    // disciplineId={props.disciplineId}
                 />
             ) : (
                 <></>
@@ -39,7 +39,7 @@ const MainPart: FC<MainPartProps> = (props) => {
             {Store.isShownSylabus && !Store.isShown ? (
                 <SylabusPage
                     // currentSylabus={props.currentSylabus}
-                    disciplineId={props.disciplineId}
+                    // disciplineId={props.disciplineId}
                 />
             ) : (
                 <></>

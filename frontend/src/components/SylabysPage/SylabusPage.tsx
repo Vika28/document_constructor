@@ -6,7 +6,7 @@ import Store from "../../store/store";
 
 interface SylabusPageProps {
     // currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean };
-    disciplineId: number;
+    // disciplineId: number;
 }
 
 const SylabusPage: FC<SylabusPageProps> = (props) => {

@@ -13,9 +13,9 @@ interface SylabusyProps {
     // formTitle: (formTitle: string) => void;
     // formType: (formType: string) => void;
     // sylabus: Sylabus;
-    disciplineId: (disciplineId: number) => void;
-    disciplineIdForComp: number;
-    setCurrentDisciplineId: (disciplineId: number) => void;
+    // disciplineId: (disciplineId: number) => void;
+    // disciplineIdForComp: number;
+    // setCurrentDisciplineId: (disciplineId: number) => void;
     // onShowCurrentSylabus: (currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
 }
 
@@ -51,8 +51,9 @@ const Sylabusy: FC<SylabusyProps> = (props) => {
         // props.formType('createSylabus');
         Store.setFormTitle('Введіть назву нового силабусу');
         Store.setFormType('createSylabus');
-        props.disciplineId(props.disciplineIdForComp);
-        props.setCurrentDisciplineId(props.disciplineIdForComp);
+        // props.disciplineId(props.disciplineIdForComp);
+        //
+        // props.setCurrentDisciplineId(props.disciplineIdForComp);
         setClickedSylabusId(null);
         // props.onShowCurrentSylabus(
         //     { id:0,

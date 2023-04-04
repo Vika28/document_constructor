@@ -15,7 +15,7 @@ interface MenuProps {
     // formTitle: (formTitle: string) => void;
     // formType: (formType: string) => void;
     // sylabus: Sylabus;
-    disciplineId: (disciplineId: number) => void;
+    // disciplineId: (disciplineId: number) => void;
     // onShowCurrentSylabus: (currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
 }
 
@@ -27,7 +27,8 @@ const Menu: FC<MenuProps> = (props) => {
 
     const handleDisciplineClick = (disciplineId: number) => {
         let showSylabusState;
-        setCurrentDisciplineId(disciplineId);
+        // setCurrentDisciplineId(disciplineId);
+        Store.setCurrentDisciplineId(disciplineId)
         showSylabusState = !isShowSylabusesList;
         setIsShowSylabusesList(showSylabusState);
     }
@@ -56,7 +57,7 @@ const Menu: FC<MenuProps> = (props) => {
         if (Store.sylabus) {
             let disciplinesArr = [...disciplines];
             disciplinesArr = disciplinesArr.map((discipline)=>{
-                if(discipline.id === currentDisciplineId) {
+                if(discipline.id === Store.currentDisciplineId) {
                     if (Store.sylabus) {
                         discipline.sylabusy.push(Store.sylabus);
                     }
@@ -86,7 +87,7 @@ const Menu: FC<MenuProps> = (props) => {
                             >
                                 <span className={styles.disciplineName}>{discipline.disciplineName}</span>
                                 {
-                                    (isShowSylabusesList && currentDisciplineId === discipline.id) ? (
+                                    (isShowSylabusesList && Store.currentDisciplineId === discipline.id) ? (
                                         <span className={styles.arrowUp}>
                                             <img src={arrowUp} alt=""/>
                                         </span>
@@ -99,16 +100,16 @@ const Menu: FC<MenuProps> = (props) => {
                             </div>
 
                                 {
-                                    (isShowSylabusesList && currentDisciplineId === discipline.id) ? (
+                                    (isShowSylabusesList && Store.currentDisciplineId === discipline.id) ? (
                                         <Sylabusy
                                             // onToggleIsShow={props.onToggleIsShow}
                                             currentDiscipline={discipline}
                                             // formTitle={props.formTitle}
                                             // formType={props.formType}
                                             // sylabus={props.sylabus}
-                                            disciplineId={props.disciplineId}
-                                            disciplineIdForComp={discipline.id}
-                                            setCurrentDisciplineId={setCurrentDisciplineId}
+                                            // disciplineId={props.disciplineId}
+                                            // disciplineIdForComp={discipline.id}
+                                            // setCurrentDisciplineId={setCurrentDisciplineId}
                                             // onShowCurrentSylabus={props.onShowCurrentSylabus}
                                         />
                                     ) : (
