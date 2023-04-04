@@ -3,18 +3,12 @@ import styles from "./sylabusy.module.css";
 import Button from "../../../common/button/Button";
 import {Discipline} from "../../../../interfaces/discipline";
 import {Sylabus} from "../../../../interfaces/sylabus";
+import Store from "../../../../store/store";
+import { observer } from "mobx-react";
 
 
 interface SylabusyProps {
-    onToggleIsShow: (isShow: boolean) => void;
     currentDiscipline: Discipline;
-    formTitle: (formTitle: string) => void;
-    formType: (formType: string) => void;
-    sylabus: Sylabus;
-    disciplineId: (disciplineId: number) => void;
-    disciplineIdForComp: number;
-    setCurrentDisciplineId: (disciplineId: number) => void;
-    onShowCurrentSylabus: (currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
 }
 
 const Sylabusy: FC<SylabusyProps> = (props) => {
@@ -25,31 +19,27 @@ const Sylabusy: FC<SylabusyProps> = (props) => {
         let tempId = 0;
         tempId = sylabus.id;
         setClickedSylabusId(tempId);
-        props.onShowCurrentSylabus(
-            { id: sylabus.id,
-                            disciplineId: sylabus.disciplineId,
-                            sylabusName: sylabus.sylabusName,
-                            type: sylabus.type,
-                            isShowSylabys: true
-            }
-        );
+        Store.setCurrentSylabus({
+                                id: sylabus.id,
+                                disciplineId: sylabus.disciplineId,
+                                sylabusName: sylabus.sylabusName,
+                                type: sylabus.type,
+                                });
+        Store.setIsShownSylabus(true);
     }
 
     const handleBtnCreateClick = () => {
-        props.onToggleIsShow(true);
-        props.formTitle('Введіть назву нового силабусу');
-        props.formType('createSylabus');
-        props.disciplineId(props.disciplineIdForComp);
-        props.setCurrentDisciplineId(props.disciplineIdForComp);
+        Store.setIsShown(true);
+        Store.setFormTitle('Введіть назву нового силабусу');
+        Store.setFormType('createSylabus');
         setClickedSylabusId(null);
-        props.onShowCurrentSylabus(
-            { id:0,
-                disciplineId: 0,
-                sylabusName: '',
-                type: '',
-                isShowSylabys: false
-            }
-        );
+        Store.setCurrentSylabus({
+                                id: 0,
+                                disciplineId: 0,
+                                sylabusName: '',
+                                type: '',
+                                });
+        Store.setIsShownSylabus(false);
     }
 
     return (
@@ -79,4 +69,4 @@ const Sylabusy: FC<SylabusyProps> = (props) => {
     )
 }
 
-export default Sylabusy;
+export default observer(Sylabusy);
