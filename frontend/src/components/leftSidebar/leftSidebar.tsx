@@ -3,9 +3,10 @@ import styles from './leftsidebar.module.css';
 import Menu from "./Menu/Menu";
 import { Discipline } from "../../interfaces/discipline";
 import { Sylabus } from "../../interfaces/sylabus";
+import {observer} from "mobx-react";
 
 interface LeftSidebarProps {
-    onToggleIsShow: (isShow: boolean) => void;
+    // onToggleIsShow: (isShow: boolean) => void;
     discipline: Discipline;
     formTitle: (formTitle: string) => void;
     formType: (formType: string) => void;
@@ -24,7 +25,7 @@ const LeftSidebar: FC<LeftSidebarProps> = (props) => {
         <div className={styles.leftSidebarWrapper}>
             <p className={styles.leftSidebarTitle}>Перелік дисциплін {teacher}</p>
             <Menu
-                onToggleIsShow={props.onToggleIsShow}
+                // onToggleIsShow={props.onToggleIsShow}
                 discipline={props.discipline}
                 formTitle={props.formTitle}
                 formType={props.formType}
@@ -36,4 +37,4 @@ const LeftSidebar: FC<LeftSidebarProps> = (props) => {
     );
 }
 
-export default LeftSidebar;
+export default observer(LeftSidebar);

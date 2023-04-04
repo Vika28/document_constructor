@@ -4,10 +4,12 @@ import Form from "../formCreate/Form";
 import { Discipline } from "../../interfaces/discipline";
 import { Sylabus } from "../../interfaces/sylabus";
 import SylabusPage from "../SylabysPage/SylabusPage";
+import Store from "../../store/store";
+import {observer} from "mobx-react";
 
 interface MainPartProps {
-    isShow: boolean;
-    onToggleIsShow: (isShow: boolean) => void;
+    // isShow: boolean;
+    // onToggleIsShow: (isShow: boolean) => void;
     onCreateDiscipline: (disciplineName: Discipline) => void;
     formTitle: string;
     formType: string;
@@ -20,9 +22,10 @@ const MainPart: FC<MainPartProps> = (props) => {
     return (
         <div className={styles.mainPart}>
             <h2 className={styles.mainPartTittle}>Основна робоча частина</h2>
-            {props.isShow ? (
+            {/*{props.isShow ? (*/}
+            {Store.isShown ? (
                 <Form
-                    onToggleIsShow={props.onToggleIsShow}
+                    // onToggleIsShow={props.onToggleIsShow}
                     onCreateDiscipline={props.onCreateDiscipline}
                     formTitle={props.formTitle}
                     formType={props.formType}
@@ -33,7 +36,7 @@ const MainPart: FC<MainPartProps> = (props) => {
                 <></>
             )
             }
-            {props.currentSylabus.isShowSylabys && !props.isShow ? (
+            {props.currentSylabus.isShowSylabys && !Store.isShown ? (
                 <SylabusPage
                     currentSylabus={props.currentSylabus}
                     disciplineId={props.disciplineId}
@@ -46,4 +49,4 @@ const MainPart: FC<MainPartProps> = (props) => {
     );
 }
 
-export default MainPart;
+export default observer(MainPart);

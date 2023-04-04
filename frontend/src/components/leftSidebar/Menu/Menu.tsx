@@ -6,9 +6,11 @@ import arrowUp from './../../../imgs/arrowUp.svg';
 import { Discipline } from "../../../interfaces/discipline";
 import { Sylabus } from "../../../interfaces/sylabus";
 import Sylabusy from "./Sylabusy/Sylabusy";
+import Store from "../../../store/store";
+import {observer} from "mobx-react";
 
 interface MenuProps {
-    onToggleIsShow: (isShow: boolean) => void;
+    // onToggleIsShow: (isShow: boolean) => void;
     discipline: Discipline;
     formTitle: (formTitle: string) => void;
     formType: (formType: string) => void;
@@ -31,7 +33,9 @@ const Menu: FC<MenuProps> = (props) => {
     }
 
     const handleBtnCreate = () => {
-        props.onToggleIsShow(true);
+        // props.onToggleIsShow(true);
+        Store.setIsShown(true);
+
         props.formTitle('Введіть назву нової дисципліни');
         props.formType('createDiscipline');
     }
@@ -91,7 +95,7 @@ const Menu: FC<MenuProps> = (props) => {
                                 {
                                     (isShowSylabusesList && currentDisciplineId === discipline.id) ? (
                                         <Sylabusy
-                                            onToggleIsShow={props.onToggleIsShow}
+                                            // onToggleIsShow={props.onToggleIsShow}
                                             currentDiscipline={discipline}
                                             formTitle={props.formTitle}
                                             formType={props.formType}
@@ -113,4 +117,4 @@ const Menu: FC<MenuProps> = (props) => {
     );
 }
 
-export default Menu;
+export default observer(Menu);

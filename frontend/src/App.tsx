@@ -5,13 +5,14 @@ import MainPart from "./components/mainPart/MainPart";
 import RightSidebar from "./components/rigthSidebar/RightSidebar";
 import { Discipline } from './interfaces/discipline';
 import { Sylabus } from "./interfaces/sylabus";
+import {observer} from "mobx-react";
 
 interface AppProps {
 
 }
 
 const App: FC<AppProps> = (props) => {
-    const [isShow, setIsShow] = useState(false);
+    // const [isShow, setIsShow] = useState(false);
     // @ts-ignore
     const [discipline, setDiscipline] = useState<Discipline>(null);
     const [formTitle, setFormTitle] = useState('');
@@ -20,10 +21,10 @@ const App: FC<AppProps> = (props) => {
     const [sylabus, setSylabus] = useState<Sylabus>(null);
     const [disciplineId, setDisciplineId] = useState(0);
     const [currentSylabus, setCurrentSylabus] = useState({ id: 0, disciplineId: 0, sylabusName: '', type: '', isShowSylabys: false } );
-    const toggleIsShow = (isShow: boolean) => {
-        console.log('callback', isShow);
-        setIsShow(isShow);
-    }
+    // const toggleIsShow = (isShow: boolean) => {
+    //     console.log('callback', isShow);
+    //     setIsShow(isShow);
+    // }
 
     const createDiscipline = (discipline: Discipline) => {
         setDiscipline(discipline);
@@ -53,11 +54,12 @@ const App: FC<AppProps> = (props) => {
 
 
     return (
+
       <div className={styles.appWrapper}>
           <h1 className={styles.pageTitle}>Конструктор документів</h1>
           <div className={styles.app}>
               <LeftSidebar
-                  onToggleIsShow={toggleIsShow}
+                  // onToggleIsShow={toggleIsShow}
                   discipline={discipline}
                   formTitle={getFormTitle}
                   formType={getFormType}
@@ -66,8 +68,8 @@ const App: FC<AppProps> = (props) => {
                   onShowCurrentSylabus={getCurrentSylabus}
               />
               <MainPart
-                  isShow={isShow}
-                  onToggleIsShow={toggleIsShow}
+                  // isShow={isShow}
+                  // onToggleIsShow={toggleIsShow}
                   onCreateDiscipline={createDiscipline}
                   formTitle={formTitle}
                   formType={formType}
@@ -82,4 +84,4 @@ const App: FC<AppProps> = (props) => {
   );
 }
 
-export default App;
+export default observer(App);

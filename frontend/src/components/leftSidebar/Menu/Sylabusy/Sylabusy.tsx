@@ -3,10 +3,12 @@ import styles from "./sylabusy.module.css";
 import Button from "../../../common/button/Button";
 import {Discipline} from "../../../../interfaces/discipline";
 import {Sylabus} from "../../../../interfaces/sylabus";
+import Store from "../../../../store/store";
+import {observer} from "mobx-react";
 
 
 interface SylabusyProps {
-    onToggleIsShow: (isShow: boolean) => void;
+    // onToggleIsShow: (isShow: boolean) => void;
     currentDiscipline: Discipline;
     formTitle: (formTitle: string) => void;
     formType: (formType: string) => void;
@@ -36,7 +38,8 @@ const Sylabusy: FC<SylabusyProps> = (props) => {
     }
 
     const handleBtnCreateClick = () => {
-        props.onToggleIsShow(true);
+        // props.onToggleIsShow(true);
+        Store.setIsShown(true);
         props.formTitle('Введіть назву нового силабусу');
         props.formType('createSylabus');
         props.disciplineId(props.disciplineIdForComp);
@@ -79,4 +82,4 @@ const Sylabusy: FC<SylabusyProps> = (props) => {
     )
 }
 
-export default Sylabusy;
+export default observer(Sylabusy);

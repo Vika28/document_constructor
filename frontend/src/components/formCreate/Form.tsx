@@ -5,9 +5,11 @@ import { Sylabus } from "../../interfaces/sylabus";
 import { RSOtype1 } from "../../RSOtypes";
 import { RSOtype2 } from "../../RSOtypes";
 import {createDiscipline, createSylabus} from "../../services/APIservice";
+import Store from "../../store/store";
+import { observer } from "mobx-react";
 
 interface FormProps {
-    onToggleIsShow: (isShow: boolean) => void;
+    // onToggleIsShow: (isShow: boolean) => void;
     onCreateDiscipline: (discipline: Discipline) => void;
     formTitle: string;
     formType: string;
@@ -54,7 +56,8 @@ const Form: FC<FormProps>= (props) => {
 
             // todo
         }
-        props.onToggleIsShow(false);
+        // props.onToggleIsShow(false);
+        Store.setIsShown(false);
     }
 
 
@@ -99,11 +102,11 @@ const Form: FC<FormProps>= (props) => {
                 >Створити</button>
                 <button
                     className={styles.btnDecline}
-                    onClick={() => props.onToggleIsShow(false)}
+                    onClick={() => Store.setIsShown(false)}
                 >Відмінити</button>
             </div>
         </div>
     );
 }
 
-export default Form;
+export default observer(Form);
