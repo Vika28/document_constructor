@@ -1,23 +1,24 @@
 import { makeAutoObservable } from 'mobx';
 import { Discipline } from "../interfaces/discipline";
+import {Sylabus} from "../interfaces/sylabus";
 
 class Store {
     isShown: boolean = false;
     discipline: Discipline | null = null;
     formTitle: string = '';
     formType: string = '';
-    // sylabus: Sylabus | null = null;
+    sylabus: Sylabus | null = null;
     // disciplineId: number = 0;
     // currentSylabus = { id: 0, disciplineId: 0, sylabusName: '', type: '', isShowSylabys: false };
     //
     constructor() {
         makeAutoObservable(this);
     }
-    //
+
     setIsShown(isShown: boolean) {
         this.isShown = isShown;
     }
-    //
+
     setDiscipline(discipline: Discipline) {
         this.discipline = discipline;
     }
@@ -29,10 +30,10 @@ class Store {
     setFormType(formType: string) {
         this.formType = formType;
     }
-    //
-    // setSylabus(sylabus: Sylabus) {
-    //     this.sylabus = sylabus;
-    // }
+
+    setSylabus(sylabus: Sylabus) {
+        this.sylabus = sylabus;
+    }
     //
     // setDisciplineId(disciplineId: number) {
     //     this.disciplineId = disciplineId;

@@ -4,7 +4,7 @@ import Button from "../../../common/button/Button";
 import {Discipline} from "../../../../interfaces/discipline";
 import {Sylabus} from "../../../../interfaces/sylabus";
 import Store from "../../../../store/store";
-import {observer} from "mobx-react";
+import { observer } from "mobx-react";
 
 
 interface SylabusyProps {
@@ -12,7 +12,7 @@ interface SylabusyProps {
     currentDiscipline: Discipline;
     // formTitle: (formTitle: string) => void;
     // formType: (formType: string) => void;
-    sylabus: Sylabus;
+    // sylabus: Sylabus;
     disciplineId: (disciplineId: number) => void;
     disciplineIdForComp: number;
     setCurrentDisciplineId: (disciplineId: number) => void;

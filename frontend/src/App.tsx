@@ -18,7 +18,7 @@ const App: FC<AppProps> = (props) => {
     // const [formTitle, setFormTitle] = useState('');
     // const [formType, setFormType] = useState('');
     // @ts-ignore
-    const [sylabus, setSylabus] = useState<Sylabus>(null);
+    // const [sylabus, setSylabus] = useState<Sylabus>(null);
     const [disciplineId, setDisciplineId] = useState(0);
     const [currentSylabus, setCurrentSylabus] = useState({ id: 0, disciplineId: 0, sylabusName: '', type: '', isShowSylabys: false } );
     // const toggleIsShow = (isShow: boolean) => {
@@ -38,10 +38,10 @@ const App: FC<AppProps> = (props) => {
     //     setFormType(formType);
     // }
 
-    const createSylabus = (sylabus: Sylabus) => {
-        // @ts-ignore
-        setSylabus(sylabus);
-    }
+    // const createSylabus = (sylabus: Sylabus) => {
+    //     // @ts-ignore
+    //     setSylabus(sylabus);
+    // }
 
     const getDisciplineId = (disciplineId: number) => {
         setDisciplineId(disciplineId);
@@ -63,7 +63,7 @@ const App: FC<AppProps> = (props) => {
                   // discipline={discipline}
                   // formTitle={getFormTitle}
                   // formType={getFormType}
-                  sylabus={sylabus}
+                  // sylabus={sylabus}
                   disciplineId={getDisciplineId}
                   onShowCurrentSylabus={getCurrentSylabus}
               />
@@ -73,7 +73,7 @@ const App: FC<AppProps> = (props) => {
                   // onCreateDiscipline={createDiscipline}
                   // formTitle={formTitle}
                   // formType={formType}
-                  onCreateSylabus={createSylabus}
+                  // onCreateSylabus={createSylabus}
                   disciplineId={disciplineId}
                   currentSylabus={currentSylabus}
               />

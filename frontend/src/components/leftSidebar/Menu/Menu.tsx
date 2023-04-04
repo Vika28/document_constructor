@@ -14,7 +14,7 @@ interface MenuProps {
     // discipline: Discipline;
     // formTitle: (formTitle: string) => void;
     // formType: (formType: string) => void;
-    sylabus: Sylabus;
+    // sylabus: Sylabus;
     disciplineId: (disciplineId: number) => void;
     onShowCurrentSylabus: (currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }) => void;
 }
@@ -52,17 +52,20 @@ const Menu: FC<MenuProps> = (props) => {
     }, [Store.discipline]);
 
     useEffect(() => {
-        if (props.sylabus) {
+        // if (props.sylabus) {
+        if (Store.sylabus) {
             let disciplinesArr = [...disciplines];
             disciplinesArr = disciplinesArr.map((discipline)=>{
                 if(discipline.id === currentDisciplineId) {
-                    discipline.sylabusy.push(props.sylabus);
+                    if (Store.sylabus) {
+                        discipline.sylabusy.push(Store.sylabus);
+                    }
                 }
                 return discipline
             })
             setDisciplines(disciplinesArr);
         }
-    }, [props.sylabus]);
+    }, [Store.sylabus]);
 
     return (
         <div className={styles.menuWrapper}>
@@ -102,7 +105,7 @@ const Menu: FC<MenuProps> = (props) => {
                                             currentDiscipline={discipline}
                                             // formTitle={props.formTitle}
                                             // formType={props.formType}
-                                            sylabus={props.sylabus}
+                                            // sylabus={props.sylabus}
                                             disciplineId={props.disciplineId}
                                             disciplineIdForComp={discipline.id}
                                             setCurrentDisciplineId={setCurrentDisciplineId}

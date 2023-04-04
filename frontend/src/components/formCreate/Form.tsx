@@ -13,7 +13,7 @@ interface FormProps {
     // onCreateDiscipline: (discipline: Discipline) => void;
     // formTitle: string;
     // formType: string;
-    onCreateSylabus: (sylabus: Sylabus) => void;
+    // onCreateSylabus: (sylabus: Sylabus) => void;
     disciplineId: number;
 }
 
@@ -42,7 +42,8 @@ const Form: FC<FormProps>= (props) => {
         } else if (Store.formType === 'createSylabus') {
             createSylabus(props.disciplineId, inputValue, RSOtype)
                 .then((sylabus) => {
-                    props.onCreateSylabus(
+                    // props.onCreateSylabus(
+                        Store.setSylabus(
                         {
                             id: sylabus.id,
                             disciplineId: sylabus.disciplineId,

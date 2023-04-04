@@ -13,7 +13,7 @@ interface MainPartProps {
     // onCreateDiscipline: (disciplineName: Discipline) => void;
     // formTitle: string;
     // formType: string;
-    onCreateSylabus: (sylabus: Sylabus) => void;
+    // onCreateSylabus: (sylabus: Sylabus) => void;
     disciplineId: number;
     currentSylabus: { id: number; disciplineId: number; sylabusName: string; type: string; isShowSylabys: boolean }
 }
@@ -29,7 +29,7 @@ const MainPart: FC<MainPartProps> = (props) => {
                     // onCreateDiscipline={props.onCreateDiscipline}
                     // formTitle={props.formTitle}
                     // formType={props.formType}
-                    onCreateSylabus={props.onCreateSylabus}
+                    // onCreateSylabus={props.onCreateSylabus}
                     disciplineId={props.disciplineId}
                 />
             ) : (
