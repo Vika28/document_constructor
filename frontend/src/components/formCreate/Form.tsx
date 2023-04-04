@@ -1,20 +1,13 @@
 import React, {FC, useState} from 'react';
 import styles from './Form.module.css';
-import { Discipline } from "../../interfaces/discipline";
-import { Sylabus } from "../../interfaces/sylabus";
 import { RSOtype1 } from "../../RSOtypes";
 import { RSOtype2 } from "../../RSOtypes";
-import {createDiscipline, createSylabus} from "../../services/APIservice";
+import { createDiscipline, createSylabus } from "../../services/APIservice";
 import Store from "../../store/store";
 import { observer } from "mobx-react";
 
 interface FormProps {
-    // onToggleIsShow: (isShow: boolean) => void;
-    // onCreateDiscipline: (discipline: Discipline) => void;
-    // formTitle: string;
-    // formType: string;
-    // onCreateSylabus: (sylabus: Sylabus) => void;
-    // disciplineId: number;
+
 }
 
 const Form: FC<FormProps>= (props) => {
@@ -27,7 +20,6 @@ const Form: FC<FormProps>= (props) => {
         if(Store.formType === 'createDiscipline') {
             createDiscipline(inputValue)
                 .then((discipline) => {
-                    // props.onCreateDiscipline(
                     Store.setDiscipline(
                         {
                             id: discipline.id,
@@ -42,7 +34,6 @@ const Form: FC<FormProps>= (props) => {
         } else if (Store.formType === 'createSylabus') {
             createSylabus(Store.currentDisciplineId, inputValue, RSOtype)
                 .then((sylabus) => {
-                    // props.onCreateSylabus(
                         Store.setSylabus(
                         {
                             id: sylabus.id,
@@ -55,13 +46,9 @@ const Form: FC<FormProps>= (props) => {
                 .catch((error) => {
                     console.log('Error creating sylabus:', error);
                 });
-
-            // todo
         }
-        // props.onToggleIsShow(false);
         Store.setIsShown(false);
     }
-
 
     return (
         <div
