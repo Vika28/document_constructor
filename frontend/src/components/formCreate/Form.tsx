@@ -10,7 +10,7 @@ import { observer } from "mobx-react";
 
 interface FormProps {
     // onToggleIsShow: (isShow: boolean) => void;
-    onCreateDiscipline: (discipline: Discipline) => void;
+    // onCreateDiscipline: (discipline: Discipline) => void;
     formTitle: string;
     formType: string;
     onCreateSylabus: (sylabus: Sylabus) => void;
@@ -27,7 +27,8 @@ const Form: FC<FormProps>= (props) => {
         if(props.formType === 'createDiscipline') {
             createDiscipline(inputValue)
                 .then((discipline) => {
-                    props.onCreateDiscipline(
+                    // props.onCreateDiscipline(
+                    Store.setDiscipline(
                         {
                             id: discipline.id,
                             disciplineName: discipline.name,

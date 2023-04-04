@@ -7,7 +7,7 @@ import {observer} from "mobx-react";
 
 interface LeftSidebarProps {
     // onToggleIsShow: (isShow: boolean) => void;
-    discipline: Discipline;
+    // discipline: Discipline;
     formTitle: (formTitle: string) => void;
     formType: (formType: string) => void;
     sylabus: Sylabus;
@@ -26,7 +26,7 @@ const LeftSidebar: FC<LeftSidebarProps> = (props) => {
             <p className={styles.leftSidebarTitle}>Перелік дисциплін {teacher}</p>
             <Menu
                 // onToggleIsShow={props.onToggleIsShow}
-                discipline={props.discipline}
+                // discipline={props.discipline}
                 formTitle={props.formTitle}
                 formType={props.formType}
                 sylabus={props.sylabus}

@@ -10,7 +10,7 @@ import {observer} from "mobx-react";
 interface MainPartProps {
     // isShow: boolean;
     // onToggleIsShow: (isShow: boolean) => void;
-    onCreateDiscipline: (disciplineName: Discipline) => void;
+    // onCreateDiscipline: (disciplineName: Discipline) => void;
     formTitle: string;
     formType: string;
     onCreateSylabus: (sylabus: Sylabus) => void;
@@ -26,7 +26,7 @@ const MainPart: FC<MainPartProps> = (props) => {
             {Store.isShown ? (
                 <Form
                     // onToggleIsShow={props.onToggleIsShow}
-                    onCreateDiscipline={props.onCreateDiscipline}
+                    // onCreateDiscipline={props.onCreateDiscipline}
                     formTitle={props.formTitle}
                     formType={props.formType}
                     onCreateSylabus={props.onCreateSylabus}

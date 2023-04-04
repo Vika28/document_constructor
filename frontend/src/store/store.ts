@@ -1,8 +1,9 @@
 import { makeAutoObservable } from 'mobx';
+import { Discipline } from "../interfaces/discipline";
 
 class Store {
     isShown: boolean = false;
-    // discipline: Discipline | null = null;
+    discipline: Discipline | null = null;
     // formTitle: string = '';
     // formType: string = '';
     // sylabus: Sylabus | null = null;
@@ -17,9 +18,9 @@ class Store {
         this.isShown = isShown;
     }
     //
-    // setDiscipline(discipline: Discipline) {
-    //     this.discipline = discipline;
-    // }
+    setDiscipline(discipline: Discipline) {
+        this.discipline = discipline;
+    }
     //
     // setFormTitle(formTitle: string) {
     //     this.formTitle = formTitle;

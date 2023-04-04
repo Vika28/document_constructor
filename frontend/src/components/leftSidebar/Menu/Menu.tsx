@@ -11,7 +11,7 @@ import {observer} from "mobx-react";
 
 interface MenuProps {
     // onToggleIsShow: (isShow: boolean) => void;
-    discipline: Discipline;
+    // discipline: Discipline;
     formTitle: (formTitle: string) => void;
     formType: (formType: string) => void;
     sylabus: Sylabus;
@@ -41,12 +41,13 @@ const Menu: FC<MenuProps> = (props) => {
     }
 
     useEffect(() => {
-        if (props.discipline) {
-            const newDisciplinesArr = [...disciplines, props.discipline];
+        // if (props.discipline) {
+        if (Store.discipline) {
+            const newDisciplinesArr = [...disciplines, Store.discipline];
             setDisciplines(newDisciplinesArr);
             console.log('newDisciplinesArr', newDisciplinesArr);
         }
-    }, [props.discipline]);
+    }, [Store.discipline]);
 
     useEffect(() => {
         if (props.sylabus) {

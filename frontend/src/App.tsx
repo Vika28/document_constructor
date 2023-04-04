@@ -26,9 +26,9 @@ const App: FC<AppProps> = (props) => {
     //     setIsShow(isShow);
     // }
 
-    const createDiscipline = (discipline: Discipline) => {
-        setDiscipline(discipline);
-    }
+    // const createDiscipline = (discipline: Discipline) => {
+    //     setDiscipline(discipline);
+    // }
 
     const getFormTitle = (formTitle: string) => {
         setFormTitle(formTitle);
@@ -60,7 +60,7 @@ const App: FC<AppProps> = (props) => {
           <div className={styles.app}>
               <LeftSidebar
                   // onToggleIsShow={toggleIsShow}
-                  discipline={discipline}
+                  // discipline={discipline}
                   formTitle={getFormTitle}
                   formType={getFormType}
                   sylabus={sylabus}
@@ -70,7 +70,7 @@ const App: FC<AppProps> = (props) => {
               <MainPart
                   // isShow={isShow}
                   // onToggleIsShow={toggleIsShow}
-                  onCreateDiscipline={createDiscipline}
+                  // onCreateDiscipline={createDiscipline}
                   formTitle={formTitle}
                   formType={formType}
                   onCreateSylabus={createSylabus}
