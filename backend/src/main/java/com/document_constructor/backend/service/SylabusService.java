@@ -1,20 +1,30 @@
 package com.document_constructor.backend.service;
 
+import com.document_constructor.backend.model.Discipline;
 import com.document_constructor.backend.model.Sylabus;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Service
+@AllArgsConstructor
 public class SylabusService {
+    @Autowired
+    private final DisciplineService disciplineService;
     private static AtomicLong idGenerator = new AtomicLong(1);
-    private static Map<Long, Sylabus> sylabusMap = new HashMap<>();
 
-    public static Long saveSylabusAndGetId(Sylabus sylabus) {
+    public Sylabus saveSylabusAndGetId(Sylabus sylabus, Number disciplineId) {
+        Discipline discipline = disciplineService.getDisciplinesById(disciplineId);
         Long id = idGenerator.getAndIncrement();
         sylabus.setId(id);
-        sylabusMap.put(id, sylabus);
-        return id;
+        Set<Sylabus> sylabuses = discipline.getSylabuses();
+        sylabuses.add(sylabus);
+        return sylabus;
     }
 }
 

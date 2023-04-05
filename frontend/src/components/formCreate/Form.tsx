@@ -2,7 +2,7 @@ import React, {FC, useState} from 'react';
 import styles from './Form.module.css';
 import { RSOtype1 } from "../../RSOtypes";
 import { RSOtype2 } from "../../RSOtypes";
-import { createDiscipline, createSylabus } from "../../services/APIservice";
+import {createDiscipline, createSylabus, getAllDisciplines} from "../../services/APIservice";
 import Store from "../../store/store";
 import { observer } from "mobx-react";
 
@@ -16,32 +16,20 @@ const Form: FC<FormProps>= (props) => {
     const isDisabledBtnCreate = inputValue === '' || RSOtype === '' && Store.formType === 'createSylabus';
 
 
-    const handleCreate = () => {
+    const handleCreate = async () => {
         if(Store.formType === 'createDiscipline') {
             createDiscipline(inputValue)
-                .then((discipline) => {
-                    Store.setDiscipline(
-                        {
-                            id: discipline.id,
-                            disciplineName: discipline.name,
-                            sylabusy: []
-                        }
-                        );
+                .then((disciplines) => {
+                    Store.setDisciplines(disciplines);
                 })
                 .catch((error) => {
                     console.log('Error creating discipline:', error);
                 });
         } else if (Store.formType === 'createSylabus') {
-            createSylabus(Store.currentDisciplineId, inputValue, RSOtype)
-                .then((sylabus) => {
-                        Store.setSylabus(
-                        {
-                            id: sylabus.id,
-                            disciplineId: sylabus.disciplineId,
-                            sylabusName: sylabus.sylabusName,
-                            type: sylabus.type,
-                        }
-                    );
+            await createSylabus(inputValue, RSOtype, Store.currentDisciplineId);
+            getAllDisciplines()
+                .then((disciplines) => {
+                    Store.setDisciplines(disciplines);
                 })
                 .catch((error) => {
                     console.log('Error creating sylabus:', error);
