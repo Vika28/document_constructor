@@ -4,10 +4,9 @@ import { Sylabus } from "../interfaces/sylabus";
 
 class Store {
     isShown: boolean = false;
-    discipline: Discipline | null = null;
+    disciplines: Discipline[] = [];
     formTitle: string = '';
     formType: string = '';
-    sylabus: Sylabus | null = null;
     currentSylabus: Sylabus = { id: 0, disciplineId: 0, sylabusName: '', type: '' };
     isShownSylabus: boolean = false;
     currentDisciplineId: number = 0;
@@ -20,8 +19,8 @@ class Store {
         this.isShown = isShown;
     }
 
-    setDiscipline(discipline: Discipline) {
-        this.discipline = discipline;
+    setDisciplines(disciplines: Discipline[]) {
+        this.disciplines = disciplines;
     }
 
     setFormTitle(formTitle: string) {
@@ -30,10 +29,6 @@ class Store {
 
     setFormType(formType: string) {
         this.formType = formType;
-    }
-
-    setSylabus(sylabus: Sylabus) {
-        this.sylabus = sylabus;
     }
 
     setCurrentSylabus(currentSylabus: Sylabus) {

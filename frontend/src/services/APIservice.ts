@@ -1,5 +1,6 @@
 import axios from "axios";
 import {url} from "../URL";
+import {Discipline} from "../interfaces/discipline";
 
 export  const  createDiscipline: (disciplineName: string) => Promise<any> = async (disciplineName: string) => {
     const { data } = await axios.post(`${url}/createDiscipline`, {
@@ -10,11 +11,14 @@ export  const  createDiscipline: (disciplineName: string) => Promise<any> = asyn
      return data;
 }
 
-export  const  createSylabus: (disciplineId: number, sylabusName: string, type: string) => Promise<any> = async (disciplineId: number, sylabusName: string, type: string) => {
-    const { data } = await axios.post(`${url}/createSylabus`, {
-        disciplineId: disciplineId,
+export  const  createSylabus: (sylabusName: string, type: string, disciplineId: number) => Promise<any> = async (sylabusName: string, type: string,disciplineId: number) => {
+    await axios.post(`${url}/createSylabus?disciplineId=${disciplineId}`, {
         sylabusName: sylabusName,
         type: type,
     });
+}
+
+export const getAllDisciplines: () => Promise<any> = async () => {
+    const { data } = await axios.get(`${url}/disciplines`);
     return data;
 }

@@ -1,8 +1,8 @@
 import React, {FC, useState} from 'react';
 import styles from "./sylabusy.module.css";
 import Button from "../../../common/button/Button";
-import {Discipline} from "../../../../interfaces/discipline";
-import {Sylabus} from "../../../../interfaces/sylabus";
+import { Discipline } from "../../../../interfaces/discipline";
+import { Sylabus } from "../../../../interfaces/sylabus";
 import Store from "../../../../store/store";
 import { observer } from "mobx-react";
 
@@ -21,7 +21,7 @@ const Sylabusy: FC<SylabusyProps> = (props) => {
         setClickedSylabusId(tempId);
         Store.setCurrentSylabus({
                                 id: sylabus.id,
-                                disciplineId: sylabus.disciplineId,
+                                disciplineId: Store.currentDisciplineId,
                                 sylabusName: sylabus.sylabusName,
                                 type: sylabus.type,
                                 });
@@ -54,7 +54,7 @@ const Sylabusy: FC<SylabusyProps> = (props) => {
                 className={styles.sylabusesWrapper}
             >
                 {
-                    props.currentDiscipline.sylabusy.map((sylabus, index) => (
+                    props.currentDiscipline.sylabuses.map((sylabus, index) => (
                         <div
                             className={`${styles.sylabusWrapper}
                                         ${clickedSylabusId === sylabus.id ? styles.active : ''}`}
