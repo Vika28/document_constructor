@@ -11,34 +11,20 @@ import com.document_constructor.backend.service.DisciplineService;
 import java.util.Set;
 
 @RestController
+@CrossOrigin
+@RequestMapping(path="/api/disciplines")
 @AllArgsConstructor
 public class DisciplineController {
-    @Autowired
     private final DisciplineService disciplineService;
-    @Autowired
-    private final SylabusService sylabusService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("/createDiscipline")
-    public Set<Discipline> createDiscipline (@RequestBody Discipline newDiscipline) {
-        return disciplineService.saveDisciplineAndGetId(newDiscipline);
+    @PostMapping
+    public DisciplineDTO create(@RequestBody DisciplineDTO discipline) {
+        return disciplineService.create(discipline);
     }
 
-    @GetMapping("/disciplines")
-    @CrossOrigin(origins = "http://localhost:3000")
-    public Set<Discipline> getDisciplines() {
-        return disciplineService.getAllDisciplines();
-    }
-
-    @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("/createSylabus")
-    public void createSylabus (@RequestBody Sylabus newSylabus, @RequestParam Number disciplineId) {
-        sylabusService.saveSylabusAndGetId(newSylabus, disciplineId);
-    }
-
-    @GetMapping("/sylabuses")
-    public Set<Sylabus> getSylabuses(@RequestParam Number disciplineId) {
-        return disciplineService.getSylabusesByDisciplineId(disciplineId);
+    @GetMapping
+    public List<DisciplineDTO> findAll() {
+        return disciplineService.findAll();
     }
 
 }

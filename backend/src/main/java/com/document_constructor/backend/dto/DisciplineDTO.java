@@ -1,21 +1,16 @@
-package com.document_constructor.backend.model;
+package com.document_constructor.backend.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-
-
-public class Discipline {
-
+@NoArgsConstructor
+public class DisciplineDTO {
     private Long id;
     private String name;
-    private Set<Sylabus> sylabuses;
-
+    Set<DocumentDTO> documents;
 }
