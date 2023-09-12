@@ -1,53 +1,30 @@
 package com.document_constructor.backend.service;
 
-import com.document_constructor.backend.model.Discipline;
-import com.document_constructor.backend.model.Sylabus;
+import com.document_constructor.backend.dto.DisciplineDTO;
+import com.document_constructor.backend.entity.DisciplineEntity;
+import com.document_constructor.backend.mapper.DisciplineMapper;
+import com.document_constructor.backend.repository.DisciplineRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class DisciplineService {
-    private AtomicLong idGenerator = new AtomicLong(1);
-    private Set<Discipline> setDisciplines = new LinkedHashSet<>();
 
-    public DisciplineService() {
+    private final DisciplineRepository disciplineRepository;
+    private final DisciplineMapper disciplineMapper;
 
+    public DisciplineDTO create(DisciplineDTO disciplineDTO) {
+        DisciplineEntity discipline = disciplineMapper.toEntity(disciplineDTO);
+        return disciplineMapper.toDTO(
+                disciplineRepository.save(discipline)
+        );
     }
 
-    public Set<Discipline> saveDisciplineAndGetId(Discipline discipline) {
-        Long id = idGenerator.getAndIncrement();
-        discipline.setSylabuses(new LinkedHashSet<>());
-        discipline.setId(id);
-        setDisciplines.add(discipline);
-        return setDisciplines;
-    }
-
-    public Set<Discipline> getAllDisciplines() {
-        Set<Discipline> setAllDisciplines = new LinkedHashSet<>();
-        for (Discipline discipline: setDisciplines) {
-            setAllDisciplines.add(discipline);
-        }
-        return setAllDisciplines;
-    }
-
-    public Discipline getDisciplinesById(Number id) {
-        for (Discipline discipline: setDisciplines) {
-            if (discipline.getId().longValue() == id.longValue()) {
-                return discipline;
-            }
-        }
-        return null;
-    }
-
-    public Set<Sylabus> getSylabusesByDisciplineId(Number disciplineId) {
-        Set<Sylabus> sylabuses = new HashSet<>();
-        for (Discipline discipline: setDisciplines) {
-            if (discipline.getId().longValue() == disciplineId.longValue()) {
-                sylabuses.addAll(discipline.getSylabuses());
-            }
-        }
-        return sylabuses;
+    public List<DisciplineDTO> findAll() {
+        return disciplineRepository.findAll().stream().map(disciplineMapper::toDTO).collect(Collectors.toList());
     }
 }

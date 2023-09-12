@@ -1,14 +1,11 @@
 package com.document_constructor.backend.controller;
 
-import com.document_constructor.backend.model.Discipline;
-import com.document_constructor.backend.model.Sylabus;
-import com.document_constructor.backend.service.SylabusService;
+import com.document_constructor.backend.dto.DisciplineDTO;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.document_constructor.backend.service.DisciplineService;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @CrossOrigin
