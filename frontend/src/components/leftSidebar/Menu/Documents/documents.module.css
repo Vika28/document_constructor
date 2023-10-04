@@ -1,0 +1,23 @@
+.sylabusWrapper {
+    padding: 7px;
+    margin-bottom: 8px;
+    background: #A3C8FF;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+
+}
+.sylabusWrapper:hover {
+    background: #4992FF;
+    transition: 0.5s;
+}
+.sylabusWrapper.active {
+    background: #4992FF;
+}
+.sylabusesWrapper {
+    margin: 9px 0;
+    display: block;
+}
+.sylabusyWrapper {
+    margin-left: 20px;
+}

@@ -1,26 +1,24 @@
-import React, {FC} from 'react';
+import React, {FC, useContext} from 'react';
 import styles from './mainPart.module.css';
-import Form from "../formCreate/Form";
-import SylabusPage from "../SylabysPage/SylabusPage";
+import DocumentPage from "../../pages/document/DocumentPage";
 import Store from "../../store/store";
 import { observer } from "mobx-react";
+import {Context} from "../../index";
 
-interface MainPartProps {
+const MainPart = () => {
+    const {auth} = useContext(Context);
 
-}
-
-const MainPart: FC<MainPartProps> = (props) => {
     return (
         <div className={styles.mainPart}>
-            <h2 className={styles.mainPartTittle}>Основна робоча частина</h2>
-            {Store.isShown ? (
-                <Form />
-            ) : (
-                <></>
-            )
-            }
+
+                <div className={styles.mainPartTittle}>
+                    <h1>Вітаю {auth.username}!</h1>
+                    <h2>Створіть дисципліну або оберіть документ для редагування</h2>
+                </div>
+
+
             {Store.isShownSylabus && !Store.isShown ? (
-                <SylabusPage />
+                <DocumentPage />
             ) : (
                 <></>
             )}

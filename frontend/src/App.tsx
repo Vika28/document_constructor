@@ -1,41 +1,23 @@
-import React, {FC, useEffect, useState} from 'react';
-import styles from './App.module.css';
-import LeftSidebar from "./components/leftSidebar/leftSidebar";
-import MainPart from "./components/mainPart/MainPart";
-import RightSidebar from "./components/rigthSidebar/RightSidebar";
-import { observer } from "mobx-react";
-import Store from "./store/store";
-import {getDisciplines} from "./services/APIservice";
+import {observer} from "mobx-react";
 
-interface AppProps {
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Login from "./pages/login/Login";
+import Signup from "./pages/registration/Signup";
+import DashboardPage from "./pages/dashboard/DashboardPage";
+import Header from "./components/header/Header";
 
-}
+function App() {
 
-const App: FC<AppProps> = (props) => {
-
-    useEffect(() => {
-        // async function fetchDisciplines() {
-        //     const data = await getAllDisciplines();
-        //     Store.setDisciplines(data)
-        // }
-        // fetchDisciplines();
-
-        getDisciplines().then(disciplines => {
-            // setDisciplines(disciplines);
-            Store.setDiscipline(disciplines)
-        });
-    }, []);
     return (
-            <div className={styles.appWrapper}>
-                <h1 className={styles.pageTitle}>Конструктор документів</h1>
-                <div className={styles.app}>
-                    <LeftSidebar />
-                    <MainPart />
-                    <RightSidebar />
-                </div>
-            </div>
-
-  );
+        <BrowserRouter>
+            <Header/>
+            <Routes>
+                <Route path='/' element={<Login/>}/>
+                <Route path='/register' element={<Signup/>}/>
+                <Route path='/dashboard/*' element={<DashboardPage/>}/>
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default observer(App);

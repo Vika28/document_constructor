@@ -1,0 +1,20 @@
+.title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 18px;
+}
+.itemsWrapper {
+
+}
+.itemWrapper {
+    border: 1px solid black;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.itemWrapper:hover {
+    cursor: pointer;
+}
+.selected {
+    background-color: green;
+}

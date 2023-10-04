@@ -1,52 +1,60 @@
 import React, {FC, useState} from 'react';
 import styles from './Form.module.css';
-import { RSOtype1 } from "../../RSOtypes";
+import {disciplineType1,disciplineType2, RSOtype1} from "../../RSOtypes";
 import { RSOtype2 } from "../../RSOtypes";
-import { createDiscipline, createSylabus } from "../../services/APIservice";
+import DisciplineService from "../../services/DisciplineService";
 import Store from "../../store/store";
 import { observer } from "mobx-react";
+import DocumentService from "../../services/DocumentService";
+import {Discipline} from "../../interfaces/Discipline";
 
-interface FormProps {
-
-}
-
-const Form: FC<FormProps>= (props) => {
+const Form= () => {
     const [inputValue, setInputValue] = useState('');
-    const [RSOtype, setRSOtype] = useState('');
-    const isDisabledBtnCreate = inputValue === '' || RSOtype === '' && Store.formType === 'createSylabus';
+    const [type, setType] = useState('');
+    const [disciplineType, setDisciplineType] = useState('');
+    const isDisabledBtnCreate = inputValue === '' || type === '' && Store.formType === 'createSylabus';
 
+    const handleBtnTypeClick = (value: string) => {
+        setType(value);
+    }
+
+    const handleBtnDisciplineTypeClick = (value: string) => {
+        setDisciplineType(value);
+    }
 
     const handleCreate = () => {
         if(Store.formType === 'createDiscipline') {
-            createDiscipline(inputValue)
-                .then((discipline) => {
-                    Store.setDiscipline(
-                        {
-                            id: discipline.id,
-                            name: discipline.name,
-                            documents: []
-                        }
-                    );
-                })
-                .catch((error) => {
-                    console.log('Error creating discipline:', error);
-                });
+            // console.log('inputValue', inputValue);
+            // DisciplineService.createDiscipline()
+            //     .then((create-discipline) => {
+            //         Store.setDiscipline(
+            //             {
+            //                 id: create-discipline.id,
+            //                 name: create-discipline.name,
+            //                 documents: []
+            //             }
+            //             );
+            //     })
+            //     .catch((error) => {
+            //         console.log('Error creating create-discipline:', error);
+            //     });
         } else if (Store.formType === 'createSylabus') {
-            createSylabus(Store.currentDisciplineId, inputValue, RSOtype)
-                .then((sylabus) => {
-                    console.log('sylabus from then', Store.currentDisciplineId, inputValue, RSOtype)
-                    Store.setSylabus(
-                        {
-                            id: sylabus.id,
-                            disciplineId: sylabus.disciplineId,
-                            sylabusName: sylabus.sylabusName,
-                            type: sylabus.type,
-                        }
-                    );
-                })
-                .catch((error) => {
-                    console.log('Error creating sylabus:', error);
-                });
+            // DocumentService.createDocument(Store.currentDisciplineId, inputValue, type, disciplineType)
+            //     .then((document) => {
+            //             Store.setSylabus(
+            //             {
+            //                 id: document.id,
+            //                 disciplineId: document.disciplineId,
+            //                 name: document.name,
+            //                 type: document.type,
+            //                 disciplineType: document.disciplineType,
+            //                 content: document.content,
+            //             }
+            //         );
+            //     })
+            //     .catch((error) => {
+            //         console.log('Error creating sylabus:', error);
+            //     });
         }
         Store.setIsShown(false);
     }
@@ -55,6 +63,7 @@ const Form: FC<FormProps>= (props) => {
         <div
             className={styles.formWrapper}
         >
+            <h1 className={styles.title}>Основна робоча частина</h1>
             <div className={styles.labelInputWrapper}>
                 <p className={styles.label}>{Store.formTitle}</p>
                 <input
@@ -67,18 +76,38 @@ const Form: FC<FormProps>= (props) => {
             </div>
             {
                 Store.formType === 'createSylabus' ? (
-                    <div className={styles.typeRSOWrapper}>
-                        <div
-                            className={`${styles.typeRSO} ${RSOtype === RSOtype1 ? styles.activeTypeRSO : ''}`}
-                            onClick={() => {
-                                setRSOtype(RSOtype1);
-                            }}
-                        >{RSOtype1}</div>
-                        <div
-                            className={`${styles.typeRSO} ${RSOtype === RSOtype2 ? styles.activeTypeRSO : ''}`}
-                            onClick={() => setRSOtype(RSOtype2)}
-                        >{RSOtype2}</div>
+                    <div className={styles.sylabusBtnsWrapper}>
+                        <p className={styles.text}>Тип РСО:</p>
+                        <div className={styles.typeRSOWrapper}>
+                            <div
+                                className={`${styles.typeRSO} ${type === 'PCO1' ? styles.activeTypeRSO : ''}`}
+                                onClick={() => {
+                                    handleBtnTypeClick('PCO1');
+                                }}
+                            >{RSOtype1}</div>
+                            <div
+                                className={`${styles.typeRSO} ${type === 'PCO2' ? styles.activeTypeRSO : ''}`}
+                                onClick={() => handleBtnTypeClick('PCO2')}
+                            >{RSOtype2}</div>
+                        </div>
+                        <p className={styles.text}>Тип дисципліни:</p>
+
+                        <div className={styles.typeRSOWrapper}>
+                            <div
+                                className={`${styles.typeRSO} ${disciplineType === 'NORMATIVE' ? styles.activeTypeRSO : ''}`}
+                                onClick={() => {
+                                    handleBtnDisciplineTypeClick('NORMATIVE');
+                                }}
+                            >{disciplineType1}</div>
+                            <div
+                                className={`${styles.typeRSO} ${disciplineType === 'SELECTIVE' ? styles.activeTypeRSO : ''}`}
+                                onClick={() => {
+                                    handleBtnDisciplineTypeClick('SELECTIVE')
+                                }}
+                            >{disciplineType2}</div>
+                        </div>
                     </div>
+
                 ) : (
                     <></>
                 )

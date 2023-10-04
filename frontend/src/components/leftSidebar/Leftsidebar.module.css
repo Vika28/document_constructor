@@ -1,0 +1,25 @@
+.leftSidebarWrapper {
+    background-color: #DDE6ED;
+    width: 265px;
+    padding: 20px 15px;
+    color: #27374D;
+    height: 100vh;
+}
+
+.btnLogout {
+    position: absolute;
+    bottom: 0;
+    text-decoration: underline;
+    font-style: italic;
+
+}
+.btnLogout:hover {
+    cursor: pointer;
+}
+.menuName {
+    font-size: 24px;
+    color: #27374D;
+    text-align: center;
+    font-weight: bold;
+
+}

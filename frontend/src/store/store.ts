@@ -1,16 +1,17 @@
 import { makeAutoObservable } from 'mobx';
-import { Discipline } from "../interfaces/discipline";
-import { Sylabus } from "../interfaces/sylabus";
+import { Discipline } from "../interfaces/Discipline";
+import { Document } from "../interfaces/Document";
 
 class Store {
     isShown: boolean = false;
     discipline: Discipline | null = null;
     formTitle: string = '';
     formType: string = '';
-    sylabus: Sylabus | null = null;
-    currentSylabus: Sylabus = { id: 0, disciplineId: 0, sylabusName: '', type: '' };
+    document: Document | null = null;
+    currentDocument: Document = { id: 0, disciplineId: 0, name: '', type: '', disciplineType: '', content: '' };
     isShownSylabus: boolean = false;
     currentDisciplineId: number = 0;
+    showBlock: boolean = false;
 
     constructor() {
         makeAutoObservable(this);
@@ -32,12 +33,12 @@ class Store {
         this.formType = formType;
     }
 
-    setSylabus(sylabus: Sylabus) {
-        this.sylabus = sylabus;
+    setSylabus(document: Document) {
+        this.document = document;
     }
 
-    setCurrentSylabus(currentSylabus: Sylabus) {
-        this.currentSylabus = currentSylabus;
+    setCurrentDocument(currentDocument: Document) {
+        this.currentDocument = currentDocument;
     }
 
     setIsShownSylabus(isShownSylabus: boolean) {
@@ -47,6 +48,11 @@ class Store {
     setCurrentDisciplineId(currentDisciplineId: number) {
         this.currentDisciplineId = currentDisciplineId;
     }
+    setShowBlock(showBlock: boolean) {
+        this.showBlock = showBlock;
+    }
+
+    // setHeaders()
 }
 
 export default new Store();

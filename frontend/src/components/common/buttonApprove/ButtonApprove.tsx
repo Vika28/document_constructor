@@ -1,22 +1,22 @@
 import React, {FC} from 'react';
-import styles from './button.module.css';
+import styles from './buttonApprove.module.css';
 
-interface ButtonProps {
+interface ButtonApproveProps {
     textContent: string;
-    handleClick: () => void;
+    handleClick?: () => void;
 }
 
-const Button: FC<ButtonProps> = (props) => {
+const ButtonApprove: FC<ButtonApproveProps> = (props) => {
     return (
         <div className={styles.btnWrapper}>
             <button
                 className={styles.btn}
                 onClick={props.handleClick}
             >
-                {props.textContent}
+                    <span>{props.textContent}</span>
             </button>
         </div>
     );
 }
 
-export default Button;
+export default ButtonApprove;
