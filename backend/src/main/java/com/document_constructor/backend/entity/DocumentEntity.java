@@ -1,8 +1,11 @@
 package com.document_constructor.backend.entity;
 
-import jakarta.persistence.*;
+
+import com.document_constructor.backend.entity.template.TemplateEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -23,4 +26,7 @@ public class DocumentEntity {
     @JoinColumn(name="discipline_id", nullable=false)
     @EqualsAndHashCode.Exclude
     private DisciplineEntity discipline;
+    @Column(name = "discipline_type")
+    @Enumerated(EnumType.STRING)
+    private DisciplineType disciplineType;
 }

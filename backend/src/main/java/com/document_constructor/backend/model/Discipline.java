@@ -10,10 +10,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
-
 public class Discipline {
-
     private Long id;
     private String name;
     private Set<Sylabus> sylabuses;

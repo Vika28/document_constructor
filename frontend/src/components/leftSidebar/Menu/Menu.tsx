@@ -3,15 +3,18 @@ import styles from './menu.module.css';
 import Button from "../../common/button/Button";
 import arrowDown from './../../../imgs/arrowDown.svg';
 import arrowUp from './../../../imgs/arrowUp.svg';
+import { Discipline } from "../../../interfaces/discipline";
 import Sylabusy from "./Sylabusy/Sylabusy";
 import Store from "../../../store/store";
 import {observer} from "mobx-react";
+import {getDisciplines} from "../../../services/APIservice"
 
 interface MenuProps {
 }
 
 const Menu: FC<MenuProps> = (props) => {
 
+    const [disciplines, setDisciplines] = useState<Discipline[]>([]);
     const [isShowSylabusesList, setIsShowSylabusesList] = useState(false);
 
     const handleDisciplineClick = (disciplineId: number) => {
@@ -27,6 +30,40 @@ const Menu: FC<MenuProps> = (props) => {
         Store.setFormType('createDiscipline');
     }
 
+    useEffect(() => {
+        // getDisciplines().then(disciplines => {
+        //     setDisciplines(disciplines);
+        // });
+        if (Store.discipline) {
+            const newDisciplinesArr = [...disciplines, Store.discipline];
+            setDisciplines(newDisciplinesArr);
+        }
+    }, [Store.discipline]);
+
+    useEffect(() => {
+        if (Store.sylabus) {
+            console.log('enter in if', Store.sylabus);
+            let disciplinesArr = [...disciplines];
+            disciplinesArr = disciplinesArr.map((discipline)=>{
+                if(discipline.id === Store.currentDisciplineId) {
+                    console.log('discipline.id', discipline.id);
+                    console.log('Store.currentDisciplineId', Store.currentDisciplineId);
+
+                    console.log('enter in second if', Store.sylabus);
+
+
+                    if (Store.sylabus) {
+                        console.log('discipline.documents', discipline.documents);
+                        console.log('Store.sylabus', Store.sylabus);
+                        discipline.documents.push(Store.sylabus);
+                    }
+                }
+                return discipline
+            })
+            setDisciplines(disciplinesArr);
+        }
+    }, [Store.sylabus]);
+
     return (
         <div className={styles.menuWrapper}>
             <h3 className={styles.menuTitle}>Меню</h3>
@@ -37,7 +74,7 @@ const Menu: FC<MenuProps> = (props) => {
             />
             <ul className={styles.disciplinesMenuWrapper}>
                 {
-                    Store.disciplines.map((discipline) => (
+                    disciplines.map((discipline) => (
                         <li className={styles.disciplineItemWrapper}>
                             <div
                                 className={styles.disciplineItem}
@@ -58,15 +95,15 @@ const Menu: FC<MenuProps> = (props) => {
                                 }
                             </div>
 
-                                {
-                                    (isShowSylabusesList && Store.currentDisciplineId === discipline.id) ? (
-                                        <Sylabusy
-                                            currentDiscipline={discipline}
-                                        />
-                                    ) : (
-                                        <></>
-                                    )
-                                }
+                            {
+                                (isShowSylabusesList && Store.currentDisciplineId === discipline.id) ? (
+                                    <Sylabusy
+                                        currentDiscipline={discipline}
+                                    />
+                                ) : (
+                                    <></>
+                                )
+                            }
                         </li>
                     ))
                 }

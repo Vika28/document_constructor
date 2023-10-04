@@ -5,7 +5,7 @@ import MainPart from "./components/mainPart/MainPart";
 import RightSidebar from "./components/rigthSidebar/RightSidebar";
 import { observer } from "mobx-react";
 import Store from "./store/store";
-import {getAllDisciplines} from "./services/APIservice";
+import {getDisciplines} from "./services/APIservice";
 
 interface AppProps {
 
@@ -14,11 +14,16 @@ interface AppProps {
 const App: FC<AppProps> = (props) => {
 
     useEffect(() => {
-        async function fetchDisciplines() {
-            const data = await getAllDisciplines();
-            Store.setDisciplines(data)
-        }
-        fetchDisciplines();
+        // async function fetchDisciplines() {
+        //     const data = await getAllDisciplines();
+        //     Store.setDisciplines(data)
+        // }
+        // fetchDisciplines();
+
+        getDisciplines().then(disciplines => {
+            // setDisciplines(disciplines);
+            Store.setDiscipline(disciplines)
+        });
     }, []);
     return (
             <div className={styles.appWrapper}>

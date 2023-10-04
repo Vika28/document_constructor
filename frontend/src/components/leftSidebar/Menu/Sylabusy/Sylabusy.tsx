@@ -1,8 +1,8 @@
 import React, {FC, useState} from 'react';
 import styles from "./sylabusy.module.css";
 import Button from "../../../common/button/Button";
-import { Discipline } from "../../../../interfaces/discipline";
-import { Sylabus } from "../../../../interfaces/sylabus";
+import {Discipline} from "../../../../interfaces/discipline";
+import {Sylabus} from "../../../../interfaces/sylabus";
 import Store from "../../../../store/store";
 import { observer } from "mobx-react";
 
@@ -20,25 +20,26 @@ const Sylabusy: FC<SylabusyProps> = (props) => {
         tempId = sylabus.id;
         setClickedSylabusId(tempId);
         Store.setCurrentSylabus({
-                                id: sylabus.id,
-                                disciplineId: Store.currentDisciplineId,
-                                sylabusName: sylabus.sylabusName,
-                                type: sylabus.type,
-                                });
+            id: sylabus.id,
+            disciplineId: sylabus.disciplineId,
+            sylabusName: sylabus.sylabusName,
+            type: sylabus.type,
+        });
         Store.setIsShownSylabus(true);
     }
 
     const handleBtnCreateClick = () => {
+        console.log('створення силабусу')
         Store.setIsShown(true);
         Store.setFormTitle('Введіть назву нового силабусу');
         Store.setFormType('createSylabus');
         setClickedSylabusId(null);
         Store.setCurrentSylabus({
-                                id: 0,
-                                disciplineId: 0,
-                                sylabusName: '',
-                                type: '',
-                                });
+            id: 0,
+            disciplineId: 0,
+            sylabusName: '',
+            type: '',
+        });
         Store.setIsShownSylabus(false);
     }
 
@@ -54,7 +55,7 @@ const Sylabusy: FC<SylabusyProps> = (props) => {
                 className={styles.sylabusesWrapper}
             >
                 {
-                    props.currentDiscipline.sylabuses.map((sylabus, index) => (
+                    props.currentDiscipline.documents.map((sylabus, index) => (
                         <div
                             className={`${styles.sylabusWrapper}
                                         ${clickedSylabusId === sylabus.id ? styles.active : ''}`}

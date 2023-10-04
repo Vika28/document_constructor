@@ -9,8 +9,8 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-@RequestMapping(path="/api/disciplines")
 @AllArgsConstructor
+@RequestMapping(path="/api/disciplines")
 public class DisciplineController {
     private final DisciplineService disciplineService;
 
@@ -23,5 +23,4 @@ public class DisciplineController {
     public List<DisciplineDTO> findAll() {
         return disciplineService.findAll();
     }
-
 }

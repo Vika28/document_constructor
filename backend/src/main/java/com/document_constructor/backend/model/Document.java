@@ -1,7 +1,6 @@
 package com.document_constructor.backend.model;
 
 import com.document_constructor.backend.interfaces.Element;
-import com.document_constructor.backend.interfaces.Template;
 
 import java.util.ArrayList;
 import java.util.List;

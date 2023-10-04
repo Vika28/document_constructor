@@ -2,7 +2,7 @@ import React, {FC, useState} from 'react';
 import styles from './Form.module.css';
 import { RSOtype1 } from "../../RSOtypes";
 import { RSOtype2 } from "../../RSOtypes";
-import {createDiscipline, createSylabus, getAllDisciplines} from "../../services/APIservice";
+import { createDiscipline, createSylabus } from "../../services/APIservice";
 import Store from "../../store/store";
 import { observer } from "mobx-react";
 
@@ -16,20 +16,33 @@ const Form: FC<FormProps>= (props) => {
     const isDisabledBtnCreate = inputValue === '' || RSOtype === '' && Store.formType === 'createSylabus';
 
 
-    const handleCreate = async () => {
+    const handleCreate = () => {
         if(Store.formType === 'createDiscipline') {
             createDiscipline(inputValue)
-                .then((disciplines) => {
-                    Store.setDisciplines(disciplines);
+                .then((discipline) => {
+                    Store.setDiscipline(
+                        {
+                            id: discipline.id,
+                            name: discipline.name,
+                            documents: []
+                        }
+                    );
                 })
                 .catch((error) => {
                     console.log('Error creating discipline:', error);
                 });
         } else if (Store.formType === 'createSylabus') {
-            await createSylabus(inputValue, RSOtype, Store.currentDisciplineId);
-            getAllDisciplines()
-                .then((disciplines) => {
-                    Store.setDisciplines(disciplines);
+            createSylabus(Store.currentDisciplineId, inputValue, RSOtype)
+                .then((sylabus) => {
+                    console.log('sylabus from then', Store.currentDisciplineId, inputValue, RSOtype)
+                    Store.setSylabus(
+                        {
+                            id: sylabus.id,
+                            disciplineId: sylabus.disciplineId,
+                            sylabusName: sylabus.sylabusName,
+                            type: sylabus.type,
+                        }
+                    );
                 })
                 .catch((error) => {
                     console.log('Error creating sylabus:', error);

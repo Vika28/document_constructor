@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DocumentDTO {
+public class TemplateDTO {
+    @JsonProperty("id")
     private Long id;
-    private String name;
+    @JsonProperty("content")
     private String content;
-    private String type;
-    private String disciplineType;
+    @JsonProperty("templateType")
+    private String templateType;
 }
-// https://drive.google.com/uc?export=view&id=1AutZEBaG78MVDLrvCBe7w1o0-xSfKsdl

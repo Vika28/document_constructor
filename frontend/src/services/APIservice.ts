@@ -1,24 +1,25 @@
 import axios from "axios";
 import {url} from "../URL";
-import {Discipline} from "../interfaces/discipline";
 
-export  const  createDiscipline: (disciplineName: string) => Promise<any> = async (disciplineName: string) => {
-    const { data } = await axios.post(`${url}/createDiscipline`, {
-        id: 1,
-        name: disciplineName,
-        sylabusy: [],
+export  const  createDiscipline: (name: string) => Promise<any> = async (name: string) => {
+    const { data } = await axios.post(`${url}/api/disciplines`, {
+        name: name,
+        documents: [],
     });
-     return data;
+    console.log('data', data);
+    return data;
 }
 
-export  const  createSylabus: (sylabusName: string, type: string, disciplineId: number) => Promise<any> = async (sylabusName: string, type: string,disciplineId: number) => {
-    await axios.post(`${url}/createSylabus?disciplineId=${disciplineId}`, {
+export  const  createSylabus: (disciplineId: number, sylabusName: string, type: string) => Promise<any> = async (disciplineId: number, sylabusName: string, type: string) => {
+    const { data } = await axios.post(`${url}/api/disciplines/${disciplineId}/documents`, {
         sylabusName: sylabusName,
         type: type,
     });
+    return data;
 }
 
-export const getAllDisciplines: () => Promise<any> = async () => {
-    const { data } = await axios.get(`${url}/disciplines`);
+export  const  getDisciplines: () => Promise<any> = async () => {
+    const { data } = await axios.get(`${url}/api/disciplines`);
+    console.log(data)
     return data;
 }
